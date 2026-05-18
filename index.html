@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Challenge Abilways x VISION IA - construire un chatbot IA texte avec Codex Desktop, Supabase et l'API OpenAI.">
+    <meta name="description" content="Challenge Abilways x VISION IA - présentation élèves pour construire un chatbot IA texte avec Codex Desktop, Supabase et l'API OpenAI.">
     <title>VISION IA x Abilways - Challenge chatbot IA</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101014'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial,sans-serif' font-size='24' font-weight='900' fill='%23fffaf0'%3EVI%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +21,8 @@
         </span>
       </button>
       <nav class="topnav" aria-label="Navigation">
+        <button type="button" data-scroll="why-chatbot">Pourquoi</button>
+        <button type="button" data-scroll="live-demo">Démo live</button>
         <button type="button" data-scroll="families">Les blocs</button>
         <button type="button" data-scroll="sources">Sources</button>
         <button type="button" data-home>Accueil</button>
@@ -33,16 +35,20 @@
       <section class="hero">
         <div class="hero-photo">
           <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1800&q=80" alt="Interface abstraite d'intelligence artificielle">
-          <div class="hero-ribbon">Pas de vocal. Pas de terminal pour les apprenants. On construit un chatbot IA texte.</div>
+          <div class="hero-ribbon">Votre mission : construire le chatbot IA texte du site VISION IA. Pas de vocal. Pas de terminal obligatoire. Vous allez comprendre, construire, tester et présenter votre logique.</div>
         </div>
         <div class="hero-copy">
-          <p class="eyebrow">Semaine du 8 juin - 3 jours</p>
-          <h1>Construire un chatbot IA simple, utile et connecté.</h1>
+          <p class="eyebrow">Bienvenue dans le challenge - 3 jours</p>
+          <h1>Construire le conseiller IA du site VISION IA.</h1>
           <p>
-            L'idée est très concrète : les apprenants utilisent <strong>Codex Desktop</strong> pour créer une petite application de chatbot,
-            la branchent à <strong>Supabase</strong>, ajoutent une <strong>clé API OpenAI</strong>, puis expliquent clairement la valeur business.
+            Imaginez un visiteur qui arrive sur le site VISION IA. Il sait qu'il perd du temps dans ses tâches,
+            mais il ne sait pas encore quelle automatisation demander : chatbot, qualification de leads, suivi CRM,
+            emails, relances, planning ou traitement des demandes. Votre rôle est de créer un chatbot texte qui écoute
+            son besoin, comprend son entreprise, utilise les informations de VISION IA, puis l'oriente vers une première
+            piste d'automatisation avec <strong>Codex Desktop</strong>, <strong>Supabase</strong> et une <strong>clé API OpenAI</strong>.
           </p>
           <div class="hero-actions">
+            <button type="button" data-scroll="live-demo">Voir la démo live</button>
             <button type="button" data-scroll="families">Voir les blocs</button>
             <button type="button" data-open-block="01">Commencer par le projet</button>
           </div>
@@ -51,25 +57,100 @@
 
       <section class="intro-panel">
         <div>
-          <p class="eyebrow">Ce que les apprenants doivent comprendre</p>
-          <h2>On ne vend pas une démo magique. On vend une méthode claire.</h2>
+          <p class="eyebrow">Ce que vous devez comprendre</p>
+          <h2>Vous construisez un guide, pas seulement une fenêtre de chat.</h2>
           <p>
-            Le chatbot répond aux questions à partir de documents d'entreprise. Pour faire simple :
-            on découpe les documents en petits morceaux, on les range dans Supabase, puis l'application récupère les bons morceaux pour répondre.
-            Chaque bloc est maintenant pensé comme un chapitre de tutoriel : pourquoi on fait l'étape, comment on la fait,
-            quoi demander à Codex, quoi vérifier, quoi montrer au jury et comment transformer la partie technique en argument business.
+            L'histoire est simple : le chatbot doit connaître VISION IA d'un côté, et comprendre l'entreprise du prospect de l'autre.
+            On range les informations VISION IA dans Supabase, on récupère les réponses du prospect, on découpe les contenus en chunks,
+            puis l'IA assemble une réponse utile. Chaque bloc est pensé comme un chapitre de tutoriel : pourquoi l'étape existe,
+            comment la faire, quoi demander à Codex, quoi vérifier, et quoi me présenter à la fin.
           </p>
         </div>
         <div class="mini-map" aria-label="Résumé du parcours">
-          <span>Documents</span>
+          <span>VISION IA</span>
           <i></i>
-          <span>Chunks</span>
+          <span>Prospect</span>
           <i></i>
           <span>Supabase</span>
           <i></i>
           <span>OpenAI</span>
           <i></i>
-          <span>Chatbot</span>
+          <span>Conseil</span>
+        </div>
+      </section>
+
+      <section id="why-chatbot" class="why-chatbot">
+        <div class="why-main">
+          <p class="eyebrow">Pourquoi ce chatbot ?</p>
+          <h2>Parce que beaucoup de prospects ne savent pas par où commencer.</h2>
+          <p>
+            Un prospect peut arriver sur le site VISION IA avec une idée très vague : “je veux gagner du temps”, “je veux automatiser
+            mes demandes”, “je veux moins copier-coller”, “je veux mieux répondre à mes clients”. Le problème, c'est qu'il ne sait pas
+            toujours si la bonne solution est un chatbot, une automatisation CRM, un assistant email, une qualification de leads,
+            un système de relance ou un autre parcours.
+          </p>
+          <p>
+            Le chatbot que vous allez imaginer sert à l'aider doucement. Il doit connaître VISION IA : les services, les exemples,
+            la façon de travailler, les limites et les prochaines étapes. Il doit aussi poser les bonnes questions au prospect :
+            son secteur, son site, ses outils, ses tâches répétitives, ses volumes, ses priorités. Ensuite, il propose une piste claire
+            et explique pourquoi cette piste a du sens.
+          </p>
+        </div>
+        <div class="why-cards">
+          <article><b>01</b><span>Comprendre VISION IA</span><p>Vous transformez le site, les offres et les exemples en base utile.</p></article>
+          <article><b>02</b><span>Comprendre le prospect</span><p>Vous récupérez son métier, ses outils, ses irritants et ses objectifs.</p></article>
+          <article><b>03</b><span>Orienter</span><p>Vous reliez son besoin à une première automatisation facile à expliquer.</p></article>
+          <article><b>04</b><span>Préparer la suite</span><p>Vous proposez une action : audit, rendez-vous, cadrage ou mini-POC.</p></article>
+        </div>
+      </section>
+
+      <section id="live-demo" class="live-demo">
+        <div class="demo-head">
+          <p class="eyebrow">Démo live du fonctionnement</p>
+          <h2>Testez le chatbot comme un conseiller d'automatisation VISION IA.</h2>
+          <p>
+            Cliquez sur une question. La démo simule le parcours : le prospect explique son besoin, l'application cherche dans les chunks
+            VISION IA et dans les informations du prospect, l'IA prépare une réponse, puis le chatbot propose une automatisation possible.
+            C'est la logique que vous devrez savoir raconter à Baptiste à la fin.
+          </p>
+        </div>
+        <div class="demo-layout">
+          <div class="demo-chat">
+            <div class="demo-window-top">
+              <span></span><span></span><span></span>
+              <b>VISION IA Assistant</b>
+            </div>
+            <div class="demo-messages" id="demoMessages" aria-live="polite"></div>
+            <div class="demo-input-row">
+              <input id="demoInput" type="text" value="Je reçois beaucoup de demandes sur mon site, quelle automatisation choisir ?" aria-label="Question de démonstration">
+              <button type="button" id="demoSend">Envoyer</button>
+            </div>
+            <div class="demo-suggestions">
+              <button type="button" data-demo-question="orientation">Automatiser mes demandes</button>
+              <button type="button" data-demo-question="hotel">Je suis un hôtel</button>
+              <button type="button" data-demo-question="visionia">Infos VISION IA</button>
+            </div>
+          </div>
+          <div class="demo-side">
+            <div class="demo-pipeline">
+              <h3>Ce qui se passe derrière</h3>
+              <ol>
+                <li data-demo-step="question">Question reçue</li>
+                <li data-demo-step="search">Recherche Supabase</li>
+                <li data-demo-step="chunks">Chunks sélectionnés</li>
+                <li data-demo-step="answer">Réponse OpenAI</li>
+              </ol>
+            </div>
+            <div class="demo-sources">
+              <h3>Chunks récupérés</h3>
+              <div id="demoSources"></div>
+            </div>
+            <div class="demo-kpis">
+              <div><b id="demoScore">0%</b><span>confiance</span></div>
+              <div><b id="demoChunks">0</b><span>chunks</span></div>
+              <div><b id="demoTime">0.0s</b><span>simulation</span></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -77,12 +158,12 @@
         <article>
           <b>01</b>
           <h3>Codex Desktop</h3>
-          <p>Les apprenants écrivent des demandes simples. Codex crée les fichiers, propose les modifications et aide à corriger.</p>
+          <p>Vous écrivez des demandes simples. Codex crée les fichiers, propose les modifications et vous aide à corriger.</p>
         </article>
         <article>
           <b>02</b>
           <h3>Supabase</h3>
-          <p>La base stocke les documents, les chunks, les questions, les réponses et les logs de test.</p>
+          <p>La base stocke les infos VISION IA, les chunks, les questions, les réponses et les logs de test.</p>
         </article>
         <article>
           <b>03</b>
@@ -91,8 +172,8 @@
         </article>
         <article>
           <b>04</b>
-          <h3>Business</h3>
-          <p>Le prototype sert surtout à défendre la valeur : gain de temps, qualité des réponses, pilotage et sécurité.</p>
+          <h3>Recommandation</h3>
+          <p>Le prototype sert à montrer comment le chatbot propose une automatisation adaptée au prospect.</p>
         </article>
       </section>
 
