@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Challenge Abilways x VISION IA - construire un chatbot IA texte avec Codex Desktop, Supabase et l'API OpenAI.">
+    <title>VISION IA x Abilways - Challenge chatbot IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <button class="brand" type="button" data-home>
+        <span class="brand-mark">VI</span>
+        <span>
+          <b>VISION IA</b>
+          <small>Challenge Abilways Academy</small>
+        </span>
+      </button>
+      <nav class="topnav" aria-label="Navigation">
+        <button type="button" data-scroll="families">Les blocs</button>
+        <button type="button" data-scroll="sources">Sources</button>
+        <button type="button" data-home>Accueil</button>
+      </nav>
+    </header>
+
+    <main id="app"></main>
+
+    <template id="home-template">
+      <section class="hero">
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1800&q=80" alt="Interface abstraite d'intelligence artificielle">
+          <div class="hero-ribbon">Pas de vocal. Pas de terminal pour les apprenants. On construit un chatbot IA texte.</div>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Semaine du 8 juin - 3 jours</p>
+          <h1>Construire un chatbot IA simple, utile et connecté.</h1>
+          <p>
+            L'idée est très concrète : les apprenants utilisent <strong>Codex Desktop</strong> pour créer une petite application de chatbot,
+            la branchent à <strong>Supabase</strong>, ajoutent une <strong>clé API OpenAI</strong>, puis expliquent clairement la valeur business.
+          </p>
+          <div class="hero-actions">
+            <button type="button" data-scroll="families">Voir les blocs</button>
+            <button type="button" data-open-block="01">Commencer par le projet</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-panel">
+        <div>
+          <p class="eyebrow">Ce que les apprenants doivent comprendre</p>
+          <h2>On ne vend pas une démo magique. On vend une méthode claire.</h2>
+          <p>
+            Le chatbot répond aux questions à partir de documents d'entreprise. Pour faire simple :
+            on découpe les documents en petits morceaux, on les range dans Supabase, puis l'application récupère les bons morceaux pour répondre.
+          </p>
+        </div>
+        <div class="mini-map" aria-label="Résumé du parcours">
+          <span>Documents</span>
+          <i></i>
+          <span>Chunks</span>
+          <i></i>
+          <span>Supabase</span>
+          <i></i>
+          <span>OpenAI</span>
+          <i></i>
+          <span>Chatbot</span>
+        </div>
+      </section>
+
+      <section class="quick-grid">
+        <article>
+          <b>01</b>
+          <h3>Codex Desktop</h3>
+          <p>Les apprenants écrivent des demandes simples. Codex crée les fichiers, propose les modifications et aide à corriger.</p>
+        </article>
+        <article>
+          <b>02</b>
+          <h3>Supabase</h3>
+          <p>La base stocke les documents, les chunks, les questions, les réponses et les logs de test.</p>
+        </article>
+        <article>
+          <b>03</b>
+          <h3>OpenAI API</h3>
+          <p>La clé API sert à générer les réponses du chatbot. L'abonnement ChatGPT et l'API sont deux choses séparées.</p>
+        </article>
+        <article>
+          <b>04</b>
+          <h3>Business</h3>
+          <p>Le prototype sert surtout à défendre la valeur : gain de temps, qualité des réponses, pilotage et sécurité.</p>
+        </article>
+      </section>
+
+      <section id="families" class="families"></section>
+
+      <section id="sources" class="sources-panel">
+        <p class="eyebrow">Sources à garder sous la main</p>
+        <h2>Les infos sensibles doivent venir des pages officielles.</h2>
+        <div class="source-grid">
+          <a href="https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan" target="_blank" rel="noreferrer">Codex inclus dans les plans ChatGPT</a>
+          <a href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noreferrer">Présentation officielle Codex Desktop</a>
+          <a href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" target="_blank" rel="noreferrer">ChatGPT Plus et prix officiel</a>
+          <a href="https://developers.openai.com/api/docs/quickstart" target="_blank" rel="noreferrer">Quickstart OpenAI API</a>
+          <a href="https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety" target="_blank" rel="noreferrer">Sécurité des clés API OpenAI</a>
+          <a href="https://supabase.com/docs/guides/api" target="_blank" rel="noreferrer">API automatique Supabase</a>
+          <a href="https://supabase.com/pricing" target="_blank" rel="noreferrer">Prix Supabase</a>
+          <a href="https://supabase.com/docs/guides/ai/vector-columns" target="_blank" rel="noreferrer">Supabase, vecteurs et embeddings</a>
+        </div>
+      </section>
+    </template>
+
+    <template id="detail-template">
+      <section class="detail-shell"></section>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
