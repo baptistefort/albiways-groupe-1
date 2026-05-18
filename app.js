@@ -16,6 +16,206 @@ const palettes = [
   "#ffe45e", "#38d8ff", "#35f28f", "#ff6b6b", "#b6ff3d", "#8fd3ff"
 ];
 
+const photoBank = [
+  { src: images.ai, caption: "L'IA comme moteur de réponse, pas comme promesse floue." },
+  { src: images.team, caption: "Le projet reste collectif : commercial, data, métier, client." },
+  { src: images.code, caption: "Codex aide à produire l'application et à corriger les détails." },
+  { src: images.data, caption: "Supabase range les informations utiles au chatbot." },
+  { src: images.laptop, caption: "L'interface doit rester simple pour l'utilisateur final." },
+  { src: images.docs, caption: "Les documents propres font la qualité des réponses." },
+  { src: images.security, caption: "La sécurité des clés et des données se prépare dès le départ." },
+  { src: images.office, caption: "Le cas doit être expliqué comme un projet d'entreprise réel." },
+  { src: images.workshop, caption: "Les apprenants avancent en atelier, étape par étape." },
+  { src: images.dashboard, caption: "Le dashboard transforme la démo en outil de pilotage." }
+];
+
+const chapterData = {
+  "01": {
+    scene: "Le client arrive avec une demande simple en apparence : il veut un chatbot pour répondre plus vite aux questions répétitives. La bonne réaction n'est pas de parler tout de suite de modèle, de code ou d'API. Il faut commencer par raconter le besoin : des utilisateurs posent souvent les mêmes questions, les réponses sont dispersées dans des documents, et les équipes perdent du temps à retrouver la bonne information.",
+    purpose: "Ce bloc sert à installer le cadre mental. Les apprenants doivent comprendre que le chatbot n'est pas une boîte magique. C'est une interface qui applique une méthode : lire la question, retrouver le bon contexte, produire une réponse claire, puis garder une trace.",
+    method: "On commence par écrire le scénario utilisateur avant de construire l'application. Une bonne phrase de cadrage suffit : un visiteur pose une question, l'application cherche dans les documents validés, l'IA répond seulement avec ce qu'elle a trouvé, et si elle ne sait pas elle le dit.",
+    example: "Exemple : un utilisateur demande « Quels documents faut-il pour démarrer le projet ? ». Le chatbot ne doit pas inventer. Il doit retrouver le chunk qui décrit la liste des documents, répondre en langage simple, puis proposer une prochaine action.",
+    business: "Commercialement, ce bloc permet de défendre la valeur : le client n'achète pas une fenêtre de chat, il achète une capacité à rendre son savoir interne utilisable.",
+    risk: "Le risque est de partir sur une démonstration trop large. Si le périmètre n'est pas clair, le chatbot répondra mal et la négociation deviendra fragile."
+  },
+  "02": {
+    scene: "Après l'introduction, l'équipe doit transformer l'idée en mission concrète. On passe de « on veut un chatbot IA » à « voici exactement ce que nous allons construire en trois jours ». Cette transition est essentielle, car un projet IA flou devient vite trop grand, trop technique et difficile à défendre.",
+    purpose: "Ce bloc sert à poser le contrat pédagogique. Les apprenants doivent savoir ce qui est attendu, ce qui ne l'est pas, et ce qu'ils devront montrer à la fin. Le jury doit sentir que le groupe maîtrise son périmètre.",
+    method: "On découpe la mission en objets visibles : une interface de chat, une base Supabase, une route OpenAI, quelques documents transformés en chunks, un tableau de tests et un dashboard simple. Chaque objet doit avoir une utilité dans la démonstration.",
+    example: "Exemple : si le groupe promet de traiter tous les documents d'une entreprise, il se perd. S'il promet de répondre à dix questions clés à partir de quatre documents propres, il peut réussir et expliquer la méthode.",
+    business: "La force commerciale vient du cadrage. Un POC limité, mesurable et bien expliqué se vend mieux qu'une promesse énorme.",
+    risk: "Le piège est de vouloir faire une application complète. En trois jours, il faut construire un prototype crédible, pas une plateforme finale."
+  },
+  "03": {
+    scene: "Le moment architecture arrive souvent trop tôt dans les projets IA. Ici, il faut le rendre très simple. Un utilisateur pose une question dans le navigateur. L'application reçoit cette question. Supabase fournit les morceaux de documents utiles. OpenAI transforme ce contexte en réponse lisible.",
+    purpose: "Ce bloc sert à rassurer. Les apprenants doivent pouvoir expliquer l'architecture à quelqu'un qui n'est pas développeur. S'ils ne savent pas la raconter simplement, ils auront du mal à défendre le prix et la sécurité.",
+    method: "On dessine quatre boîtes : utilisateur, application, Supabase, OpenAI. Puis on ajoute les flèches : question, recherche de contexte, génération, réponse, log. Ce schéma suffit pour comprendre l'essentiel.",
+    example: "Exemple : le client demande où sont stockées les données. La réponse est claire : les documents et les logs restent dans Supabase ; OpenAI reçoit uniquement la question et les extraits nécessaires pour répondre.",
+    business: "Cette architecture aide à vendre parce qu'elle sépare les responsabilités. On peut parler sécurité, coût, qualité et maintenance sans mélanger tous les sujets.",
+    risk: "Le risque est d'employer trop de jargon. Si le jury entend uniquement API, embeddings et backend, il décroche."
+  },
+  "04": {
+    scene: "Le projet dure trois jours, donc le planning doit protéger les équipes. Le premier jour sert à comprendre et cadrer. Le deuxième sert à construire et brancher. Le troisième sert à tester, améliorer et préparer la soutenance commerciale.",
+    purpose: "Ce bloc sert à éviter la panique. Les apprenants ont besoin d'un chemin. Ils doivent savoir quoi faire maintenant, quoi garder pour plus tard, et comment décider si une idée est trop ambitieuse.",
+    method: "On travaille par jalons. À la fin du jour 1, le scénario, les documents et le prompt maître sont prêts. À la fin du jour 2, la démo répond à quelques questions. À la fin du jour 3, le groupe sait présenter, tester et négocier.",
+    example: "Exemple : si l'équipe n'a pas de réponse IA fiable à midi le jour 2, elle réduit le périmètre. Elle garde trois documents, cinq questions et une version simple par mots-clés.",
+    business: "Le planning devient un argument de pilotage. Une équipe qui sait découper un POC montre qu'elle saura aussi gérer un déploiement client.",
+    risk: "Le risque est de passer deux jours sur le design avant d'avoir une réponse fonctionnelle."
+  },
+  "05": {
+    scene: "Avant de construire, il faut préparer les comptes. Codex Desktop sert à construire. Supabase sert à stocker. OpenAI API sert à générer les réponses. ChatGPT Plus donne accès à Codex selon les conditions du plan, mais l'API reste une facturation séparée.",
+    purpose: "Ce bloc sert à clarifier les outils et les coûts. Les apprenants doivent éviter une confusion fréquente : payer ChatGPT Plus ne veut pas dire que l'application peut utiliser l'API OpenAI sans coût.",
+    method: "On vérifie quatre accès : compte ChatGPT, Codex Desktop ouvert, projet Supabase, plateforme OpenAI avec possibilité de créer une clé API. Ensuite on note les identifiants utiles sans jamais exposer les secrets.",
+    example: "Exemple : l'équipe peut dire « Nous utilisons Codex pour construire plus vite, Supabase pour stocker les chunks, et l'API OpenAI pour répondre aux questions dans l'application. »",
+    business: "La clarté des outils rassure le client. On sait ce qui est inclus, ce qui est variable, et ce qui doit être sécurisé.",
+    risk: "Le risque est de vendre l'abonnement ChatGPT comme s'il couvrait tous les coûts API du chatbot."
+  },
+  "06": {
+    scene: "Codex Desktop devient le compagnon de construction. Les apprenants ne doivent pas penser comme des développeurs experts. Ils doivent apprendre à formuler une demande claire, lire ce que Codex propose, tester visuellement, puis demander une correction.",
+    purpose: "Ce bloc sert à leur donner une méthode de dialogue avec Codex. Ils ne doivent pas cliquer au hasard ni accepter du code sans comprendre le résultat.",
+    method: "Chaque demande à Codex doit contenir le contexte, l'objectif, les contraintes, le style souhaité, les fichiers concernés et le test attendu. Ensuite, l'équipe demande une explication courte de ce qui a changé.",
+    example: "Exemple : au lieu d'écrire « fais un chatbot », on écrit « crée une interface de chatbot texte avec une zone messages, un champ question, trois suggestions, un état de chargement et une zone sources ». La deuxième demande est exploitable.",
+    business: "Codex devient un accélérateur, pas une excuse. La valeur reste dans le cadrage, les tests, la sécurité et la capacité à expliquer.",
+    risk: "Le risque est d'accepter une réponse de Codex sans vérifier dans le navigateur."
+  },
+  "07": {
+    scene: "Le projet doit avoir une structure simple. Les apprenants ouvrent un dossier dans Codex Desktop et demandent une application lisible : une page de chat, une configuration Supabase, une route serveur OpenAI, une ingestion de documents et une page dashboard.",
+    purpose: "Ce bloc sert à éviter le désordre. Si les fichiers sont mal rangés, l'équipe ne saura plus où modifier le design, où mettre la clé, où lire les logs ou où corriger la recherche.",
+    method: "On demande à Codex de créer une structure en petites zones : interface, services, API, données, styles. Puis on lui demande d'expliquer le rôle de chaque fichier en français simple.",
+    example: "Exemple : un dossier peut contenir une page chatbot, un module Supabase, un module OpenAI, un fichier de prompts et une page dashboard. Ce n'est pas obligatoire de faire compliqué.",
+    business: "Une structure claire aide à défendre la maintenabilité. Le client comprend que le prototype peut évoluer.",
+    risk: "Le risque est d'avoir une démo qui marche une fois, mais que personne ne sait corriger."
+  },
+  "08": {
+    scene: "Le prompt maître est le brief que l'équipe donne à Codex. C'est comme un brief créatif pour un designer ou un brief projet pour un développeur. S'il est vague, Codex devine. S'il est précis, Codex construit dans la bonne direction.",
+    purpose: "Ce bloc sert à faire gagner du temps. Les apprenants doivent apprendre à écrire le bon brief avant de demander des écrans ou des fonctions.",
+    method: "Le prompt maître précise le produit, les utilisateurs, les outils, les limites, le style visuel, les règles de sécurité, les livrables et le niveau d'explication attendu.",
+    example: "Exemple : « Les apprenants ne doivent pas utiliser le terminal » est une contrainte importante. Codex doit donc expliquer les actions en langage naturel et préparer ce qui peut être copié dans Supabase.",
+    business: "Un bon prompt maître montre une posture professionnelle : on cadre avant d'exécuter.",
+    risk: "Le risque est de laisser Codex choisir seul l'architecture, le ton et le niveau de sécurité."
+  },
+  "09": {
+    scene: "Le design du chatbot est la première chose que le jury voit. Même si le coeur du projet est la donnée, une interface confuse donne l'impression d'un produit fragile. Le design doit aider l'utilisateur à poser une question et à comprendre la réponse.",
+    purpose: "Ce bloc sert à transformer la démo en expérience. Les apprenants doivent penser aux messages, aux états, aux sources, aux boutons et aux retours d'erreur.",
+    method: "On construit une interface avec trois zones : conversation, action, preuve. La conversation affiche les messages. L'action permet de poser une question. La preuve montre les sources ou les chunks utilisés.",
+    example: "Exemple : après une réponse, le chatbot peut afficher « Sources utilisées : FAQ onboarding, section documents à fournir ». Cela rassure immédiatement.",
+    business: "Un bon design aide à vendre parce qu'il rend la valeur visible.",
+    risk: "Le risque est de faire une belle page qui ne montre pas les sources, les limites ou l'état de recherche."
+  },
+  "10": {
+    scene: "Supabase est la base du projet. On y range les documents, les chunks, les questions, les réponses, les feedbacks et les réglages. L'équipe ne doit pas voir Supabase comme un détail technique, mais comme la mémoire du chatbot.",
+    purpose: "Ce bloc sert à comprendre où vivent les données. Sans base claire, le chatbot dépend de texte collé au hasard dans un prompt.",
+    method: "On crée un projet Supabase, puis les tables. On vérifie que l'API automatique est disponible. On récupère l'URL du projet et les clés nécessaires. Les clés sensibles restent côté serveur.",
+    example: "Exemple : quand une question est posée, l'application peut enregistrer la question, les chunks trouvés, la réponse générée et la note de qualité. Cela permet de piloter le projet.",
+    business: "Supabase permet de parler sérieux : traçabilité, amélioration continue, sécurité, pilotage.",
+    risk: "Le risque est de stocker des données sans règle d'accès ou d'exposer la mauvaise clé."
+  },
+  "11": {
+    scene: "Codex peut préparer le schéma SQL. Les apprenants ne doivent pas tout écrire à la main. Leur rôle est de comprendre les tables, de coller le SQL dans Supabase, de vérifier le résultat et d'expliquer pourquoi chaque table existe.",
+    purpose: "Ce bloc sert à rendre la base concrète. Les mots documents, chunks et logs doivent devenir des objets visibles dans Supabase.",
+    method: "On demande à Codex un schéma minimal. Ensuite on lit chaque table. Documents garde la source. Chunks garde les morceaux exploitables. Chat logs garde les échanges. Feedback garde les notes. Settings garde les réglages.",
+    example: "Exemple : si un utilisateur dit que la réponse est mauvaise, l'équipe peut retrouver le log, voir quels chunks ont été utilisés, puis corriger le document ou le découpage.",
+    business: "Une base bien dessinée prouve que le projet est pilotable et améliorable.",
+    risk: "Le risque est de créer trop de tables, ou des tables que personne ne sait expliquer."
+  },
+  "12": {
+    scene: "Les documents sont la matière première. Le chatbot ne peut pas répondre correctement si les documents sont mal choisis, mal écrits ou contradictoires. Avant de parler d'IA, l'équipe doit choisir les contenus qui méritent d'entrer dans la base.",
+    purpose: "Ce bloc sert à rappeler une vérité simple : l'IA amplifie la qualité ou le désordre des documents.",
+    method: "On sélectionne quatre types de documents : FAQ, offre, process, règles de réponse. On supprime les doublons, on clarifie les titres, on garde les informations à jour et on retire ce qui est sensible ou inutile.",
+    example: "Exemple : une FAQ avec dix questions bien rédigées vaut mieux qu'un dossier de cinquante pages rempli de phrases ambiguës.",
+    business: "Le nettoyage documentaire peut être vendu comme une partie de la valeur du projet. Le client obtient aussi une base de connaissance plus propre.",
+    risk: "Le risque est de brancher le chatbot sur des documents non validés."
+  },
+  "13": {
+    scene: "Le chunking est le moment où les documents deviennent exploitables. Un long document est difficile à utiliser tel quel. On le découpe en sections cohérentes pour permettre au chatbot de retrouver le passage utile.",
+    purpose: "Ce bloc sert à expliquer la logique RAG simplement. Le chatbot ne lit pas tout à chaque question ; il récupère les morceaux les plus proches du besoin.",
+    method: "On découpe par titres, paragraphes ou sections. Chaque chunk garde son texte, sa source, sa catégorie, son numéro et éventuellement un résumé court. On évite de couper au milieu d'une idée.",
+    example: "Exemple : un document offre peut donner un chunk sur le prix, un chunk sur la mise en place, un chunk sur la sécurité, un chunk sur les limites du service.",
+    business: "Un bon découpage améliore la précision et réduit le risque de réponse hors sujet.",
+    risk: "Le risque est de faire des chunks trop petits qui perdent le contexte, ou trop grands qui mélangent plusieurs sujets."
+  },
+  "14": {
+    scene: "Avant de répondre, le chatbot doit chercher. C'est la différence entre un chatbot généraliste et un chatbot connecté à une base d'entreprise. La recherche récupère les chunks utiles, puis l'IA écrit la réponse avec ces éléments.",
+    purpose: "Ce bloc sert à comprendre le coeur du produit. Sans recherche de contexte, le chatbot répond avec sa connaissance générale. Avec recherche, il répond à partir de la base validée.",
+    method: "Pour le challenge, on peut commencer par une recherche par mots-clés. Si le groupe avance bien, il explique les embeddings et pgvector : on transforme les textes en vecteurs et on compare les similarités.",
+    example: "Exemple : la question « combien de temps prend le déploiement ? » doit retrouver les chunks contenant planning, POC, pilote et production.",
+    business: "La recherche permet de défendre la fiabilité : la réponse vient de sources internes, pas d'une improvisation.",
+    risk: "Le risque est de récupérer des chunks hors sujet et de donner une réponse fausse mais bien écrite."
+  },
+  "15": {
+    scene: "L'API OpenAI est le moment où l'application produit une vraie réponse. L'interface et Supabase préparent le contexte. OpenAI reçoit la question, les chunks sélectionnés et les règles de réponse, puis renvoie un texte clair.",
+    purpose: "Ce bloc sert à expliquer le rôle exact d'OpenAI. L'API ne doit pas recevoir toute la base, seulement ce qui est utile à la question.",
+    method: "On crée une clé API, on la garde côté serveur, on prépare une route qui reçoit la question, on ajoute les chunks, puis on appelle le modèle. Le navigateur ne voit jamais la clé.",
+    example: "Exemple : la route serveur reçoit « Quels documents fournir ? » et trois chunks. Elle demande à OpenAI de répondre en trois phrases et d'indiquer si l'information est incomplète.",
+    business: "L'API est le moteur de rédaction. La valeur vient de la combinaison : données propres, contexte pertinent, règles de réponse et suivi.",
+    risk: "Le risque est d'exposer la clé ou d'envoyer trop de données inutiles."
+  },
+  "16": {
+    scene: "Le choix du modèle doit rester pragmatique. Les apprenants ne doivent pas se perdre dans une comparaison infinie. Pour un prototype, on choisit un modèle texte fiable et économique, puis un modèle d'embedding adapté à la recherche.",
+    purpose: "Ce bloc sert à apprendre à arbitrer. Un bon Business Developer ne dit pas juste « on prend le meilleur modèle ». Il explique coût, qualité, rapidité et usage.",
+    method: "On vérifie la page officielle des modèles. On choisit un modèle texte pour répondre, par exemple un modèle GPT récent adapté au budget, et text-embedding-3-small pour une version pédagogique des embeddings.",
+    example: "Exemple : pour une démo, un modèle mini peut suffire. Pour une réponse très sensible ou très qualitative, on peut justifier un modèle plus puissant.",
+    business: "Le choix du modèle devient un argument de pilotage des coûts.",
+    risk: "Le risque est de promettre un prix fixe sans connaître le volume de questions ni le modèle réellement utilisé."
+  },
+  "17": {
+    scene: "La sécurité n'est pas un chapitre à la fin. Elle commence dès que l'équipe crée une clé API ou une clé Supabase. Une clé exposée peut permettre à quelqu'un d'utiliser le compte ou d'accéder à des données.",
+    purpose: "Ce bloc sert à donner des règles simples et non négociables. Les apprenants n'ont pas besoin de devenir experts sécurité, mais ils doivent connaître les gestes dangereux.",
+    method: "On garde les clés côté serveur, on utilise des variables d'environnement, on évite les captures d'écran de secrets, on limite les droits, on active les règles d'accès Supabase et on renouvelle une clé exposée.",
+    example: "Exemple : si une clé apparaît dans un fichier public sur GitHub, on la considère compromise et on la régénère immédiatement.",
+    business: "La sécurité protège la confiance. Un client accepte plus facilement un POC quand les limites sont claires.",
+    risk: "Le risque est de dire « ce n'est qu'une démo » et de négliger les secrets."
+  },
+  "18": {
+    scene: "La réponse IA doit être cadrée. Le chatbot n'est pas là pour remplir le silence. Il doit répondre quand le contexte suffit, dire quand l'information manque, et proposer une action utile.",
+    purpose: "Ce bloc sert à écrire les règles de comportement du chatbot. Sans prompt système, le modèle peut répondre de manière trop générale.",
+    method: "On rédige un prompt système avec le rôle, le ton, les limites, les règles de source, les cas d'escalade et le format de réponse. Puis on teste avec des questions faciles et difficiles.",
+    example: "Exemple : si la base ne contient pas le tarif, le chatbot ne doit pas inventer. Il doit dire que le tarif n'est pas disponible dans les documents fournis.",
+    business: "Une réponse honnête vaut mieux qu'une réponse impressionnante mais risquée.",
+    risk: "Le risque est d'obtenir une réponse fluide mais non vérifiable."
+  },
+  "19": {
+    scene: "Tester le chatbot, ce n'est pas juste vérifier qu'il répond. Il faut vérifier qu'il répond bien, avec le bon contexte, au bon niveau de confiance, et qu'il sait refuser quand la base ne suffit pas.",
+    purpose: "Ce bloc sert à donner une méthode qualité. Les apprenants doivent montrer qu'ils ont testé, pas seulement qu'ils ont cliqué.",
+    method: "On prépare dix questions : simples, ambiguës, pièges et hors base. Pour chaque question, on note le résultat attendu, la réponse obtenue, les chunks utilisés et la correction à faire.",
+    example: "Exemple : une question hors base doit produire une réponse de refus contrôlé. Si le chatbot invente, le groupe corrige le prompt ou la recherche.",
+    business: "Les tests donnent confiance au jury et au client. Ils montrent que l'équipe sait piloter la qualité.",
+    risk: "Le risque est de préparer uniquement des questions faciles qui font bien paraître la démo."
+  },
+  "20": {
+    scene: "Le dashboard donne une vie commerciale au chatbot. Sans dashboard, le projet est une interface. Avec dashboard, il devient un outil de pilotage : on voit les questions fréquentes, les réponses manquantes et les sujets à améliorer.",
+    purpose: "Ce bloc sert à relier technique et business. Les apprenants doivent montrer que le chatbot peut produire des indicateurs.",
+    method: "On affiche des KPI simples : nombre de questions, taux de réponse trouvée, sujets fréquents, questions sans réponse, feedback, temps gagné estimé et prochaine action.",
+    example: "Exemple : si 40 % des questions concernent le prix, l'équipe commerciale sait qu'il faut améliorer la fiche offre ou créer une page dédiée.",
+    business: "Le dashboard aide à défendre le ROI et la maintenance mensuelle.",
+    risk: "Le risque est de créer un dashboard décoratif sans décision associée."
+  },
+  "21": {
+    scene: "La valeur se défend avec des preuves. Le groupe doit passer de « notre chatbot fonctionne » à « voici pourquoi il mérite un budget ». Cette étape transforme la démo en proposition commerciale.",
+    purpose: "Ce bloc sert à préparer la négociation. Les apprenants doivent défendre le prix, la marge et les contreparties.",
+    method: "On relie chaque fonction à une valeur : gain de temps, qualité, traçabilité, réduction des erreurs, connaissance centralisée, pilotage. Puis on prépare les concessions possibles et les lignes rouges.",
+    example: "Exemple : si le client demande 25 % de remise, le groupe peut proposer de réduire le périmètre, d'obtenir un engagement plus long ou de cadrer un pilote payant.",
+    business: "La valeur est le coeur du challenge Business Developer.",
+    risk: "Le risque est de répondre au prix par une remise immédiate."
+  },
+  "22": {
+    scene: "Le jury joue un client exigeant. Il va challenger le prix, la sécurité, Codex, Supabase, le POC gratuit et la fiabilité. Les apprenants doivent s'entraîner avant d'arriver en soutenance.",
+    purpose: "Ce bloc sert à transformer la préparation en posture. Une bonne démo ne suffit pas si l'équipe s'effondre aux objections.",
+    method: "On prépare des objections courtes, puis des réponses structurées : écouter, reformuler, revenir à la valeur, poser une condition, proposer la prochaine étape.",
+    example: "Exemple : à « pourquoi payer si Codex code ? », la réponse est : Codex accélère la production, mais le client paie le cadrage, la sécurité, les données, les tests, la maintenance et la responsabilité.",
+    business: "Le role play montre la maturité commerciale.",
+    risk: "Le risque est de se défendre trop vite ou de critiquer le concurrent au lieu de défendre sa valeur."
+  },
+  "23": {
+    scene: "La fin doit être très claire. Le jury doit repartir avec quatre idées : le problème est compris, le prototype fonctionne, la méthode est sérieuse, et la négociation est maîtrisée.",
+    purpose: "Ce bloc sert à préparer le rendu final. Les apprenants doivent organiser leur soutenance comme une histoire, pas comme une liste de fichiers.",
+    method: "On présente le contexte, la solution, la démo, l'architecture, les tests, le dashboard, les risques, la valeur et la proposition de négociation. Chaque partie doit durer peu de temps mais être précise.",
+    example: "Exemple : la conclusion peut être : « Nous avons construit un chatbot texte connecté à Supabase, capable de répondre à partir de documents validés, et nous avons défini les conditions commerciales pour le déployer proprement. »",
+    business: "Le livrable final doit prouver autant la compétence commerciale que la compréhension technique.",
+    risk: "Le risque est de montrer l'application sans expliquer les choix, les limites et le plan de suite."
+  }
+};
+
 const families = [
   {
     title: "1. Comprendre",
@@ -523,7 +723,7 @@ const blocks = [
         title: "Pour le chatbot texte",
         bullets: [
           "Prototype économique : utiliser un modèle mini récent si disponible dans le compte API.",
-          "Réponse plus qualitative : utiliser un modèle plus avancé comme GPT-5.5 quand la qualité compte plus que le coût.",
+          "Réponse plus qualitative : utiliser un modèle plus avancé de la famille GPT-5, par exemple GPT-5.2 si disponible dans le compte API, quand la qualité compte plus que le coût.",
           "Toujours vérifier la page Models et Pricing avant le challenge, car les noms et prix changent."
         ]
       },
@@ -837,6 +1037,9 @@ function detail(id) {
         </div>
       </aside>
       <div class="detail-main">
+        ${renderLongTutorial(block)}
+        ${renderSchemaSection(block)}
+        ${renderPhotoGallery(block)}
         ${renderSections(block)}
         ${renderPrompt(block)}
         ${renderWarning(block)}
@@ -919,6 +1122,203 @@ function fakeScreen(block) {
       </div>
     </div>
   `;
+}
+
+function renderLongTutorial(block) {
+  const chapter = chapterData[block.id] || chapterData["01"];
+  const steps = tutorialSteps(block, chapter);
+  return `
+    <section class="story-panel">
+      <p class="eyebrow">Chapitre ${block.id} / Histoire guidée</p>
+      <h2>Comprendre l'étape avant de l'exécuter</h2>
+      <div class="story-grid">
+        <article>
+          <h3>La scène</h3>
+          <p>${chapter.scene}</p>
+          <p>Dans la présentation, il faut raconter ce moment comme une petite histoire. Le groupe ne doit pas dire seulement « on utilise ${block.tag} ». Il doit expliquer ce qui vient juste avant, ce que l'utilisateur ou le client attend, et ce qui doit être vrai à la fin du bloc. Cette logique aide les apprenants à ne pas empiler des outils. Ils construisent une chaîne de valeur.</p>
+        </article>
+        <article>
+          <h3>À quoi ça sert</h3>
+          <p>${chapter.purpose}</p>
+          <p>La question à poser aux équipes est simple : si on supprime ce bloc, qu'est-ce que le projet perd ? La réponse doit être concrète. On perd de la clarté, de la qualité, de la sécurité, du pilotage ou de la valeur commerciale. Cette phrase oblige les apprenants à relier chaque étape à une raison métier.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="tutorial-panel">
+      <p class="eyebrow">Tutoriel étape par étape</p>
+      <h2>Comment bien faire ce bloc</h2>
+      <p>${chapter.method}</p>
+      <ol class="tutorial-steps">
+        ${steps.map((step) => `<li><b>${step.title}</b><span>${step.text}</span></li>`).join("")}
+      </ol>
+      <div class="example-box">
+        <h3>Exemple concret à donner aux apprenants</h3>
+        <p>${chapter.example}</p>
+        <p>Après l'exemple, demander au groupe de reformuler avec ses propres mots. S'il ne sait pas reformuler, c'est que l'étape n'est pas encore comprise. La reformulation doit rester simple : problème, action, résultat, preuve.</p>
+      </div>
+    </section>
+
+    <section class="prompt-lab">
+      <p class="eyebrow">Prompts de travail</p>
+      <h2>Ce qu'ils peuvent demander à Codex et à ChatGPT</h2>
+      <div class="prompt-grid">
+        <div class="prompt-box">
+          <h3>Prompt Codex Desktop</h3>
+          <pre>${escapeHtml(buildCodexPrompt(block, chapter))}</pre>
+        </div>
+        <div class="prompt-box alt">
+          <h3>Prompt préparation orale</h3>
+          <pre>${escapeHtml(buildOralPrompt(block, chapter))}</pre>
+        </div>
+      </div>
+      <p>Le but n'est pas de copier sans réfléchir. Le prompt sert à lancer le travail. Ensuite, les apprenants doivent lire la réponse, supprimer ce qui est trop compliqué, garder ce qui est utile et demander une version plus simple si nécessaire.</p>
+    </section>
+
+    <section class="quality-panel">
+      <p class="eyebrow">Contrôle qualité</p>
+      <h2>Comment vérifier que le bloc est réussi</h2>
+      <div class="quality-grid">
+        <article>
+          <h3>Vérification produit</h3>
+          <ul>
+            <li>L'étape produit un résultat visible ou vérifiable.</li>
+            <li>Le groupe sait montrer ce résultat en moins d'une minute.</li>
+            <li>Le lien avec le chatbot est évident.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Vérification business</h3>
+          <p>${chapter.business}</p>
+          <p>Le groupe doit donc traduire le bloc en bénéfice client. Si la phrase commence par « techniquement », il faut la réécrire pour parler usage, sécurité, temps gagné, qualité ou décision.</p>
+        </article>
+        <article>
+          <h3>Erreur à éviter</h3>
+          <p>${chapter.risk}</p>
+          <p>La meilleure protection est de garder une preuve : capture, table Supabase, réponse de test, mini-dashboard, schéma ou prompt validé.</p>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function tutorialSteps(block, chapter) {
+  return [
+    {
+      title: "1. Poser le contexte",
+      text: `Commencer par expliquer où l'on se trouve dans l'histoire du projet : ${chapter.scene.split(".")[0].toLowerCase()}. Cette phrase évite de présenter le bloc comme une action isolée.`
+    },
+    {
+      title: "2. Dire l'objectif",
+      text: `Formuler le résultat attendu avec des mots simples. Pour ce bloc, l'objectif est lié à : ${block.card.toLowerCase()}`
+    },
+    {
+      title: "3. Faire l'action dans Codex ou dans l'outil",
+      text: "Écrire une demande précise, lire ce que l'outil propose, puis demander une explication. Les apprenants ne doivent pas avancer sans comprendre ce qui a changé."
+    },
+    {
+      title: "4. Vérifier avec une preuve",
+      text: "La preuve peut être une page visible, une table Supabase, une réponse du chatbot, un log, un schéma ou un test réussi. Une étape sans preuve est trop fragile pour le jury."
+    },
+    {
+      title: "5. Transformer en argument",
+      text: "Finir par une phrase commerciale : pourquoi cette étape rassure le client, réduit un risque, améliore la qualité ou aide à défendre le prix."
+    }
+  ];
+}
+
+function buildCodexPrompt(block, chapter) {
+  return `Nous travaillons sur le bloc ${block.id} : ${block.title}.
+
+Contexte : ${chapter.scene}
+
+Objectif : ${chapter.purpose}
+
+Ce que je veux que tu fasses :
+1. propose une action concrète à réaliser dans l'application ;
+2. explique à quoi cela sert pour le chatbot IA texte ;
+3. donne les fichiers ou écrans concernés ;
+4. garde une solution simple pour des apprenants Business Developer ;
+5. ajoute une preuve à vérifier dans le navigateur ou dans Supabase ;
+6. termine par une phrase que je peux dire au jury.
+
+Contraintes : pas de vocal, pas de clé API exposée côté navigateur, pas de terminal obligatoire pour les apprenants, explications simples et progressives.`;
+}
+
+function buildOralPrompt(block, chapter) {
+  return `Aide-moi à présenter le bloc ${block.id} "${block.title}" à l'oral.
+
+Je veux une explication très simple en 90 secondes :
+- le problème ;
+- pourquoi ce bloc est utile ;
+- ce que nous avons fait ;
+- un exemple concret ;
+- le risque si on le fait mal ;
+- la phrase commerciale à dire au client.
+
+Utilise un ton naturel, direct et amical. Ne fais pas trop technique.`;
+}
+
+function renderSchemaSection(block) {
+  const chapter = chapterData[block.id] || chapterData["01"];
+  const steps = block.steps?.length ? block.steps : ["Cadrer", "Construire", "Tester", "Défendre"];
+  return `
+    <section class="schema-section">
+      <p class="eyebrow">3 schémas à expliquer</p>
+      <h2>Voir le bloc sous trois angles</h2>
+      <div class="schema-grid">
+        <article class="schema-card schema-flow-card">
+          <h3>Schéma 1 / Parcours</h3>
+          <div class="schema-flow">${steps.map((step) => `<span>${step}</span>`).join("<i>→</i>")}</div>
+          <p>Ce schéma raconte l'ordre naturel. Il aide les apprenants à présenter sans se perdre.</p>
+        </article>
+        <article class="schema-card schema-decision-card">
+          <h3>Schéma 2 / Décision</h3>
+          <div class="decision-map">
+            <span>Est-ce clair ?</span>
+            <b>Oui</b>
+            <em>On avance</em>
+            <b>Non</b>
+            <em>On simplifie</em>
+          </div>
+          <p>Ce schéma force le groupe à vérifier la compréhension avant de passer à la suite.</p>
+        </article>
+        <article class="schema-card schema-proof-card">
+          <h3>Schéma 3 / Preuve</h3>
+          <div class="proof-map">
+            <span>Action</span>
+            <span>Résultat</span>
+            <span>Preuve</span>
+            <span>Argument</span>
+          </div>
+          <p>${chapter.business}</p>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function renderPhotoGallery(block) {
+  const gallery = galleryFor(block);
+  return `
+    <section class="photo-section">
+      <p class="eyebrow">4 images pour raconter</p>
+      <h2>Illustrer l'étape comme un vrai projet</h2>
+      <div class="photo-gallery">
+        ${gallery.map((photo, index) => `
+          <figure class="photo-card">
+            <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
+            <figcaption><b>Image ${index + 1}</b>${photo.caption}</figcaption>
+          </figure>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function galleryFor(block) {
+  const start = Number(block.id) % photoBank.length;
+  return [0, 1, 2, 3].map((offset) => photoBank[(start + offset) % photoBank.length]);
 }
 
 function renderSections(block) {
