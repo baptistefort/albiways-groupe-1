@@ -841,6 +841,84 @@ p {
   padding: clamp(20px, 4vw, 42px);
 }
 
+.drive-panel {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 0;
+  border: 3px solid var(--ink);
+  background: var(--white);
+  box-shadow: var(--hard-shadow);
+  overflow: hidden;
+}
+
+.drive-copy {
+  padding: clamp(22px, 4vw, 42px);
+  background:
+    linear-gradient(135deg, rgba(53, 242, 143, 0.24), transparent 42%),
+    linear-gradient(35deg, rgba(56, 216, 255, 0.26), transparent 58%),
+    var(--white);
+}
+
+.drive-copy h2 {
+  max-width: 900px;
+  font-size: clamp(31px, 4vw, 55px);
+}
+
+.drive-copy p:not(.eyebrow) {
+  max-width: 880px;
+  margin: 18px 0 0;
+  color: rgba(16, 16, 20, 0.74);
+  font-weight: 780;
+}
+
+.drive-card {
+  border-left: 3px solid var(--ink);
+  background: var(--yellow);
+  padding: clamp(22px, 4vw, 38px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.drive-card b {
+  width: fit-content;
+  border: 3px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 9px 12px;
+  font-family: "Archivo Black", Inter, sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.drive-card p {
+  margin: 0;
+  color: rgba(16, 16, 20, 0.76);
+  font-weight: 850;
+}
+
+.drive-card a {
+  width: fit-content;
+  border: 3px solid var(--ink);
+  background: var(--pink);
+  color: var(--white);
+  box-shadow: 5px 5px 0 rgba(16, 16, 20, 0.18);
+  cursor: pointer;
+  font-weight: 1000;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 13px 15px;
+  text-decoration: none;
+}
+
+.drive-card a:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 rgba(16, 16, 20, 0.22);
+}
+
 .sources-panel .eyebrow {
   color: var(--yellow);
 }
@@ -1624,6 +1702,7 @@ p {
   .intro-panel,
   .why-chatbot,
   .demo-layout,
+  .drive-panel,
   .detail-hero,
   .detail-content,
   .detail-layout-playbook .detail-content,
@@ -1634,6 +1713,7 @@ p {
   .hero-photo,
   .why-main,
   .demo-chat,
+  .drive-card,
   .detail-media {
     border-right: 0;
     border-left: 0;
