@@ -3,218 +3,852 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Challenge Abilways x VISION IA - présentation élèves pour construire un chatbot IA texte avec Codex Desktop, Supabase et l'API OpenAI.">
-    <title>VISION IA x Abilways - Challenge chatbot IA</title>
-    <link rel="icon" type="image/png" href="./assets/abilways-academy-favicon.png">
+    <meta name="description" content="Retour de présentation du Groupe 2 : MCP, Vercel, sécurité, logs, réponses aux questions et notes finales à gratter.">
+    <title>Groupe 2 - Retour de présentation</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='white'/%3E%3Crect x='6' y='6' width='52' height='52' fill='none' stroke='black' stroke-width='6'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='24' font-weight='900' fill='black'%3EG2%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/styles.css?v=20260615d">
   </head>
   <body>
-    <header class="topbar">
-      <button class="brand" type="button" data-home>
-        <img class="brand-logo" src="./assets/abilways-academy-logo.png" alt="Abilways Academy">
-        <span class="sr-only">Retour à l'accueil du challenge Abilways Academy x VISION IA</span>
-      </button>
-      <nav class="topnav" aria-label="Navigation">
-        <button type="button" data-scroll="why-chatbot">Pourquoi</button>
-        <button type="button" data-scroll="live-demo">Démo live</button>
-        <button type="button" data-scroll="families">Les blocs</button>
-        <button type="button" data-scroll="drive-rag">Drive RAG</button>
-        <button type="button" data-scroll="sources">Sources</button>
-        <button type="button" data-home>Accueil</button>
+    <div class="cursor-halo" aria-hidden="true"></div>
+    <div class="fixed left-0 top-0 z-[80] h-2 w-full bg-white">
+      <div class="progress-bar h-full w-full bg-black"></div>
+    </div>
+
+    <header class="sticky top-2 z-50 border-b-[3px] border-black bg-white/95 backdrop-blur">
+      <div class="mx-auto flex w-[calc(100%_-_24px)] max-w-[1220px] items-center justify-between gap-3 py-3">
+        <a href="#section-01" class="neo-btn bg-black text-white" aria-label="Retour au debut">
+          <span class="font-mono">G2</span>
+          <span class="hidden sm:inline">Retour présentation</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <div class="hidden border-[3px] border-black bg-white px-3 py-2 font-mono text-xs font-black uppercase md:block">
+            Section <span id="sectionCounter">01</span>/20
+          </div>
+          <button id="menuToggle" class="neo-btn" type="button" aria-label="Ouvrir la navigation">Menu</button>
+        </div>
+      </div>
+      <nav id="navPanel" class="mx-auto hidden w-[calc(100%_-_24px)] max-w-[1220px] pb-4 lg:block" aria-label="Navigation des sections">
+        <div class="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-10">
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-01">01 Intro</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-02">02 Équipe</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-03">03 Projet</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-04">04 MCP</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-05">05 Vercel</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-06">06 Workflow</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-07">07 Site</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-08">08 Sécu</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-09">09 Logs</a>
+          <a data-nav-link class="border-[2px] border-black bg-white px-2 py-2 text-center font-mono text-[10px] font-black uppercase transition hover:bg-black hover:text-white" href="#section-20">20 Notes</a>
+        </div>
       </nav>
     </header>
 
-    <main id="app"></main>
-
-    <template id="home-template">
-      <section class="hero">
-        <div class="hero-photo logo-hero">
-          <img src="./assets/abilways-academy-full.png" alt="Logo Abilways Academy">
-          <div class="hero-ribbon">Votre mission : construire le chatbot IA texte du site VISION IA. Pas de vocal. Pas de terminal obligatoire. Vous allez comprendre, construire, tester et présenter votre logique.</div>
+    <main>
+      <section id="section-01" data-index="01" class="section-wrap reveal">
+        <div class="grid min-h-[calc(100vh-120px)] gap-5 lg:grid-cols-[1.08fr_.92fr]">
+          <div class="neo-card noise-panel grid-bg relative flex flex-col justify-between overflow-hidden p-5 md:p-8">
+            <div class="relative z-10">
+              <span class="section-label">Groupe 2 / Évaluation projet</span>
+              <h1 class="display-title max-w-5xl">Retour de présentation.</h1>
+              <p class="body-copy mt-6 max-w-3xl">
+                Audrena, Éric, Christophe : votre présentation a montré de bons réflexes sur MCP, Vercel,
+                la sécurité, les logs et la façon de répondre aux questions. Je vous ai préparé ce retour
+                en mode page interactive : sérieux sur le fond, un peu drôle dans la forme, et beaucoup
+                plus visuelle qu'un simple compte rendu.
+              </p>
+            </div>
+            <div class="relative z-10 mt-10 grid gap-3 sm:grid-cols-3">
+              <div class="border-[3px] border-black bg-white p-4">
+                <p class="tiny-caps">Projet compris</p>
+                <p class="mt-3 font-display text-5xl leading-none">OK</p>
+              </div>
+              <div class="border-[3px] border-black bg-black p-4 text-white">
+                <p class="tiny-caps">Mot préféré</p>
+                <p class="mt-3 font-display text-5xl leading-none">MCP</p>
+              </div>
+              <div class="border-[3px] border-black bg-white p-4">
+                <p class="tiny-caps">Dernier acte</p>
+                <p class="mt-3 font-display text-5xl leading-none">Notes</p>
+              </div>
+            </div>
+          </div>
+          <aside class="neo-card flex flex-col justify-between bg-black p-5 text-white md:p-8">
+            <div>
+              <p class="tiny-caps border-[3px] border-white px-3 py-2">Dashboard instantane</p>
+              <div class="mt-5 grid grid-cols-2 gap-3">
+                <div class="border-[3px] border-white p-4">
+                  <p class="font-display text-6xl" data-count="20">0</p>
+                  <p class="tiny-caps">Sections</p>
+                </div>
+                <div class="border-[3px] border-white bg-white p-4 text-black">
+                  <p class="font-display text-6xl" data-count="5">0</p>
+                  <p class="tiny-caps">Tickets</p>
+                </div>
+                <div class="col-span-2 border-[3px] border-white p-4">
+                  <p class="tiny-caps">Ce que je retiens</p>
+                  <p class="mt-3 text-xl font-black leading-tight">
+                    Bons outils, bonne méthode, bonne base. La prochaine fois, montrez encore plus de choses en live.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <a class="neo-btn mt-6 border-white bg-white text-black shadow-none hover:shadow-none" href="#section-20">Voir les notes</a>
+          </aside>
         </div>
-        <div class="hero-copy">
-          <p class="eyebrow">Bienvenue dans le challenge - 3 jours</p>
-          <h1>Construire le conseiller IA du site VISION IA.</h1>
-          <p>
-            Imaginez un visiteur qui arrive sur le site VISION IA. Il sait qu'il perd du temps dans ses tâches,
-            mais il ne sait pas encore quelle automatisation demander : chatbot, qualification de leads, suivi CRM,
-            emails, relances, planning ou traitement des demandes. Votre rôle est de créer un chatbot texte qui écoute
-            son besoin, comprend son entreprise, utilise les informations de VISION IA, puis l'oriente vers une première
-            piste d'automatisation avec <strong>Codex Desktop</strong>, <strong>Supabase</strong> et une <strong>clé API OpenAI</strong>.
+      </section>
+
+      <section id="section-02" data-index="02" class="section-wrap reveal">
+        <div class="mb-5 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <span class="section-label">Équipe</span>
+            <h2 class="section-title max-w-4xl">Trois profils, trois angles.</h2>
+          </div>
+          <p class="body-copy max-w-md md:text-right">
+            Votre présentation a tenu parce que la technique, la sécurité et le commerce se sont bien complétés.
           </p>
-          <div class="hero-actions">
-            <button type="button" data-scroll="live-demo">Voir la démo live</button>
-            <button type="button" data-scroll="families">Voir les blocs</button>
-            <button type="button" data-open-block="01">Commencer par le projet</button>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-3">
+          <article class="tilt-card neo-card min-h-[430px] p-6">
+            <div class="flex items-start justify-between">
+              <p class="font-display text-7xl">A</p>
+              <span class="tiny-caps border-[3px] border-black px-3 py-2">Sécurité</span>
+            </div>
+            <h3 class="mt-10 font-display text-5xl uppercase leading-none">Audrena</h3>
+            <p class="body-copy mt-5">
+              Audrena, sur la sécurité, tu m'as bien expliqué pourquoi il faut cadrer le chatbot,
+              protéger les accès, garder les clés au bon endroit et éviter qu'une démo devienne une faille.
+            </p>
+            <div class="mt-8 border-[3px] border-black bg-black p-4 text-white">
+              <p class="tiny-caps">Signal retenu</p>
+              <p class="mt-2 text-lg font-black">Un chatbot doit être sécurisé, pas seulement fonctionnel.</p>
+            </div>
+          </article>
+          <article class="tilt-card neo-card min-h-[430px] bg-black p-6 text-white">
+            <div class="flex items-start justify-between">
+              <p class="font-display text-7xl">E</p>
+              <span class="tiny-caps border-[3px] border-white px-3 py-2">API</span>
+            </div>
+            <h3 class="mt-10 font-display text-5xl uppercase leading-none">Éric</h3>
+            <p class="mt-5 text-base font-semibold leading-8 text-neutral-100 md:text-lg">
+              Éric, ta réponse sur le coût API était bien. Tu n'as pas sorti un chiffre au hasard :
+              tu as expliqué que ça dépend de la demande, du modèle, du volume et du contexte envoyé.
+            </p>
+            <div class="mt-8 border-[3px] border-white bg-white p-4 text-black">
+              <p class="tiny-caps">Signal retenu</p>
+              <p class="mt-2 text-lg font-black">Une réponse crédible vaut mieux qu'un chiffre trop rond.</p>
+            </div>
+          </article>
+          <article class="tilt-card neo-card min-h-[430px] p-6">
+            <div class="flex items-start justify-between">
+              <p class="font-display text-7xl">C</p>
+              <span class="tiny-caps border-[3px] border-black px-3 py-2">Commerce</span>
+            </div>
+            <h3 class="mt-10 font-display text-5xl uppercase leading-none">Christophe</h3>
+            <p class="body-copy mt-5">
+              Christophe, j'aurais aimé t'entendre plus tôt pendant la présentation. Quand tu es intervenu,
+              tu as ramené le projet côté client : usage, valeur, objection et contexte terrain.
+            </p>
+            <div class="mt-8 border-[3px] border-black bg-neutral-100 p-4">
+              <p class="tiny-caps">Signal retenu</p>
+              <p class="mt-2 text-lg font-black">Très utile sur la partie commerciale. La prochaine fois, viens plus tôt.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="section-03" data-index="03" class="section-wrap reveal">
+        <div class="neo-card section-clip overflow-hidden">
+          <div class="grid lg:grid-cols-[.82fr_1.18fr]">
+            <div class="bg-black p-6 text-white md:p-10">
+              <span class="tiny-caps border-[3px] border-white px-3 py-2">Compréhension du projet</span>
+              <h2 class="mt-8 font-display text-[clamp(3rem,7vw,7rem)] uppercase leading-[.85]">C'est OK.</h2>
+              <p class="mt-6 text-lg font-bold leading-8 text-neutral-100">
+                Vous avez compris le fonctionnement général : la base, la mémoire, l'API, les coûts,
+                la sécurité, Codex, Supabase et la partie visible du chatbot. On sentait que vous ne récitiez
+                pas juste une interface, vous aviez compris la logique.
+              </p>
+            </div>
+            <div class="grid gap-0 sm:grid-cols-2">
+              <div class="border-b-[3px] border-black p-6 sm:border-r-[3px]">
+                <p class="font-display text-6xl">01</p>
+                <h3 class="mt-6 text-2xl font-black uppercase">Supabase</h3>
+                <p class="body-copy mt-3">Vous avez compris le rôle de la base : garder les données, les logs et les morceaux utiles.</p>
+              </div>
+              <div class="border-b-[3px] border-black p-6">
+                <p class="font-display text-6xl">02</p>
+                <h3 class="mt-6 text-2xl font-black uppercase">Chunks</h3>
+                <p class="body-copy mt-3">Vous avez compris la logique de mémoire : découper pour retrouver le bon contexte.</p>
+              </div>
+              <div class="p-6 sm:border-r-[3px] sm:border-black">
+                <p class="font-display text-6xl">03</p>
+                <h3 class="mt-6 text-2xl font-black uppercase">API</h3>
+                <p class="body-copy mt-3">Vous avez su parler coût, usage, volume et nuance, sans vendre une promesse trop simple.</p>
+              </div>
+              <div class="dot-bg p-6">
+                <p class="font-display text-6xl">04</p>
+                <h3 class="mt-6 text-2xl font-black uppercase">Sécurité</h3>
+                <p class="body-copy mt-3">Vous avez relié la qualité du chatbot à la protection des accès et des données.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="intro-panel">
-        <div>
-          <p class="eyebrow">Ce que vous devez comprendre</p>
-          <h2>Vous construisez un guide, pas seulement une fenêtre de chat.</h2>
-          <p>
-            L'histoire est simple : le chatbot doit connaître VISION IA d'un côté, et comprendre l'entreprise du prospect de l'autre.
-            On range les informations VISION IA dans Supabase, on récupère les réponses du prospect, on découpe les contenus en chunks,
-            puis l'IA assemble une réponse utile. Chaque bloc est pensé comme un chapitre de tutoriel : pourquoi l'étape existe,
-            comment la faire, quoi demander à Codex, quoi vérifier, et quoi me présenter à la fin.
-          </p>
-        </div>
-        <div class="mini-map" aria-label="Résumé du parcours">
-          <span>VISION IA</span>
-          <i></i>
-          <span>Prospect</span>
-          <i></i>
-          <span>Supabase</span>
-          <i></i>
-          <span>OpenAI</span>
-          <i></i>
-          <span>Conseil</span>
-        </div>
-      </section>
-
-      <section id="why-chatbot" class="why-chatbot">
-        <div class="why-main">
-          <p class="eyebrow">Pourquoi ce chatbot ?</p>
-          <h2>Parce que beaucoup de prospects ne savent pas par où commencer.</h2>
-          <p>
-            Un prospect peut arriver sur le site VISION IA avec une idée très vague : “je veux gagner du temps”, “je veux automatiser
-            mes demandes”, “je veux moins copier-coller”, “je veux mieux répondre à mes clients”. Le problème, c'est qu'il ne sait pas
-            toujours si la bonne solution est un chatbot, une automatisation CRM, un assistant email, une qualification de leads,
-            un système de relance ou un autre parcours.
-          </p>
-          <p>
-            Le chatbot que vous allez imaginer sert à l'aider doucement. Il doit connaître VISION IA : les services, les exemples,
-            la façon de travailler, les limites et les prochaines étapes. Il doit aussi poser les bonnes questions au prospect :
-            son secteur, son site, ses outils, ses tâches répétitives, ses volumes, ses priorités. Ensuite, il propose une piste claire
-            et explique pourquoi cette piste a du sens.
-          </p>
-        </div>
-        <div class="why-cards">
-          <article><b>01</b><span>Comprendre VISION IA</span><p>Vous transformez le site, les offres et les exemples en base utile.</p></article>
-          <article><b>02</b><span>Comprendre le prospect</span><p>Vous récupérez son métier, ses outils, ses irritants et ses objectifs.</p></article>
-          <article><b>03</b><span>Orienter</span><p>Vous reliez son besoin à une première automatisation facile à expliquer.</p></article>
-          <article><b>04</b><span>Préparer la suite</span><p>Vous proposez une action : audit, rendez-vous, cadrage ou mini-POC.</p></article>
-        </div>
-      </section>
-
-      <section id="live-demo" class="live-demo">
-        <div class="demo-head">
-          <p class="eyebrow">Démo live du fonctionnement</p>
-          <h2>Testez le chatbot comme un conseiller d'automatisation VISION IA.</h2>
-          <p>
-            Cliquez sur une question. La démo simule le parcours : le prospect explique son besoin, l'application cherche dans les chunks
-            VISION IA et dans les informations du prospect, l'IA prépare une réponse, puis le chatbot propose une automatisation possible.
-            C'est la logique que vous devrez savoir raconter à Baptiste à la fin.
-          </p>
-        </div>
-        <div class="demo-layout">
-          <div class="demo-chat">
-            <div class="demo-window-top">
-              <span></span><span></span><span></span>
-              <b>VISION IA Assistant</b>
-            </div>
-            <div class="demo-messages" id="demoMessages" aria-live="polite"></div>
-            <div class="demo-input-row">
-              <input id="demoInput" type="text" value="Je reçois beaucoup de demandes sur mon site, quelle automatisation choisir ?" aria-label="Question de démonstration">
-              <button type="button" id="demoSend">Envoyer</button>
-            </div>
-            <div class="demo-suggestions">
-              <button type="button" data-demo-question="orientation">Automatiser mes demandes</button>
-              <button type="button" data-demo-question="hotel">Je suis un hôtel</button>
-              <button type="button" data-demo-question="visionia">Infos VISION IA</button>
-            </div>
+      <section id="section-04" data-index="04" class="section-wrap reveal">
+        <div class="mb-8 overflow-hidden border-y-[3px] border-black bg-white py-3">
+          <div class="ticker-track gap-6 font-display text-4xl uppercase">
+            <span>MCP avec Google</span><span>Connecter</span><span>Chercher</span><span>Automatiser</span><span>Gagner du temps</span>
+            <span>MCP avec Google</span><span>Connecter</span><span>Chercher</span><span>Automatiser</span><span>Gagner du temps</span>
           </div>
-          <div class="demo-side">
-            <div class="demo-pipeline">
-              <h3>Ce qui se passe derrière</h3>
-              <ol>
-                <li data-demo-step="question">Question reçue</li>
-                <li data-demo-step="search">Recherche Supabase</li>
-                <li data-demo-step="chunks">Chunks sélectionnés</li>
-                <li data-demo-step="answer">Réponse OpenAI</li>
-              </ol>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-[1fr_1.2fr]">
+          <div class="neo-card p-6 md:p-8">
+            <span class="section-label">MCP + Google</span>
+            <h2 class="section-title">Le très bon réflexe.</h2>
+            <p class="body-copy mt-6">
+              MCP avec Google, c'était le top. Avec ce type de commande, vous pouvez connecter des outils,
+              chercher des informations, automatiser des actions et gagner du temps.
+              Ce n'est pas un détail technique, c'est une vraie méthode de travail.
+            </p>
+            <p class="body-copy mt-4">
+              Franchement, respect pour ça. Vous avez cherché plus loin que la consigne, et ça se voit.
+            </p>
+          </div>
+          <div class="neo-card bg-black p-5 text-white md:p-8">
+            <div class="border-[3px] border-white bg-white p-3 text-black">
+              <div class="flex gap-2">
+                <span class="h-4 w-4 border-[2px] border-black bg-black"></span>
+                <span class="h-4 w-4 border-[2px] border-black bg-white"></span>
+                <span class="h-4 w-4 border-[2px] border-black bg-neutral-300"></span>
+              </div>
             </div>
-            <div class="demo-sources">
-              <h3>Chunks récupérés</h3>
-              <div id="demoSources"></div>
+            <div class="mt-4 font-mono text-sm font-black leading-8">
+              <p class="command-line">&gt; mcp.google.search("présentation chatbot vision ia")</p>
+              <p>&gt; result: sources propres + gain de temps</p>
+              <p>&gt; action: connecter, vérifier, automatiser</p>
+              <p>&gt; status: très bon réflexe détecté</p>
             </div>
-            <div class="demo-kpis">
-              <div><b id="demoScore">0%</b><span>confiance</span></div>
-              <div><b id="demoChunks">0</b><span>chunks</span></div>
-              <div><b id="demoTime">0.0s</b><span>simulation</span></div>
+            <div class="mt-8 grid grid-cols-3 gap-3">
+              <div class="border-[3px] border-white p-4 text-center">
+                <p class="font-display text-5xl">1</p>
+                <p class="tiny-caps">Connecter</p>
+              </div>
+              <div class="border-[3px] border-white bg-white p-4 text-center text-black">
+                <p class="font-display text-5xl">2</p>
+                <p class="tiny-caps">Chercher</p>
+              </div>
+              <div class="border-[3px] border-white p-4 text-center">
+                <p class="font-display text-5xl">3</p>
+                <p class="tiny-caps">Construire</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="quick-grid">
-        <article>
-          <b>01</b>
-          <h3>Codex Desktop</h3>
-          <p>Vous écrivez des demandes simples. Codex crée les fichiers, propose les modifications et vous aide à corriger.</p>
-        </article>
-        <article>
-          <b>02</b>
-          <h3>Supabase</h3>
-          <p>La base stocke les infos VISION IA, les chunks, les questions, les réponses et les logs de test.</p>
-        </article>
-        <article>
-          <b>03</b>
-          <h3>OpenAI API</h3>
-          <p>La clé API sert à générer les réponses du chatbot. L'abonnement ChatGPT et l'API sont deux choses séparées.</p>
-        </article>
-        <article>
-          <b>04</b>
-          <h3>Recommandation</h3>
-          <p>Le prototype sert à montrer comment le chatbot propose une automatisation adaptée au prospect.</p>
-        </article>
+      <section id="section-05" data-index="05" class="section-wrap reveal">
+        <div class="neo-card overflow-hidden">
+          <div class="grid lg:grid-cols-[1.1fr_.9fr]">
+            <div class="stripe-bg p-6 md:p-10">
+              <span class="section-label">Vercel</span>
+              <h2 class="section-title max-w-4xl">Bon choix pour une démo client.</h2>
+              <p class="body-copy mt-6 max-w-3xl">
+                Vous avez utilisé Vercel, et c'est exactement le type d'outil qu'on utilise souvent pour montrer une démo propre.
+                Ce que j'ai aimé : vous êtes allés chercher un outil utile sans attendre qu'il soit donné dans la consigne.
+              </p>
+              <div class="mt-8 grid gap-3 sm:grid-cols-3">
+                <div class="neo-card-sm p-4">
+                  <p class="tiny-caps">Avant</p>
+                  <p class="mt-3 text-xl font-black">Projet local, dur à partager.</p>
+                </div>
+                <div class="neo-card-sm bg-black p-4 text-white">
+                  <p class="tiny-caps">Pendant</p>
+                  <p class="mt-3 text-xl font-black">Déploiement clair, lien propre.</p>
+                </div>
+                <div class="neo-card-sm p-4">
+                  <p class="tiny-caps">Apres</p>
+                  <p class="mt-3 text-xl font-black">Démo plus crédible.</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-black p-6 text-white md:p-10">
+              <div class="mx-auto max-w-sm border-[3px] border-white bg-white p-4 text-black shadow-[10px_10px_0_#fff]">
+                <p class="tiny-caps">Deploy board</p>
+                <div class="mt-5 space-y-3 font-mono text-sm font-black">
+                  <div class="flex justify-between border-[3px] border-black p-3"><span>Build</span><span>OK</span></div>
+                  <div class="flex justify-between border-[3px] border-black p-3"><span>Preview</span><span>OK</span></div>
+                  <div class="flex justify-between border-[3px] border-black bg-black p-3 text-white"><span>Client</span><span>Lien</span></div>
+                  <div class="flex justify-between border-[3px] border-black p-3"><span>Stress</span><span>-42%</span></div>
+                </div>
+              </div>
+              <p class="mt-8 text-lg font-black leading-8">
+                Ce que je garde : vous avez compris qu'une présentation ne dépend pas seulement du code.
+                Il faut aussi rendre le projet facile à ouvrir, facile à montrer et facile à comprendre.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section id="families" class="families"></section>
+      <section id="section-06" data-index="06" class="section-wrap reveal">
+        <div class="grid gap-5 lg:grid-cols-[.95fr_1.05fr]">
+          <div class="neo-card bg-black p-6 text-white md:p-8">
+            <span class="tiny-caps border-[3px] border-white px-3 py-2">Méthode de build</span>
+            <h2 class="mt-8 font-display text-[clamp(3rem,6.5vw,6.5rem)] uppercase leading-[.85]">Claude vers Codex.</h2>
+            <p class="mt-6 text-lg font-bold leading-8 text-neutral-100">
+              La boucle était intelligente : préparer un prompt propre sur Claude, puis construire avec Codex.
+              Ça évite des allers-retours inutiles et ça permet de commencer avec une base plus nette.
+            </p>
+          </div>
+          <div class="grid gap-5">
+            <div class="neo-card p-5">
+              <div class="grid items-center gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
+                <div class="border-[3px] border-black p-4">
+                  <p class="font-display text-5xl">Claude</p>
+                  <p class="body-copy mt-2">Vous préparez un prompt plus propre et plus structuré.</p>
+                </div>
+                <div class="hidden font-display text-5xl md:block">→</div>
+                <div class="border-[3px] border-black bg-black p-4 text-white">
+                  <p class="font-display text-5xl">Codex</p>
+                  <p class="mt-2 text-base font-bold leading-7">Vous construisez avec une meilleure base.</p>
+                </div>
+                <div class="hidden font-display text-5xl md:block">→</div>
+                <div class="border-[3px] border-black p-4">
+                  <p class="font-display text-5xl">Tokens</p>
+                  <p class="body-copy mt-2">Vous évitez de perdre du temps sur des corrections floues.</p>
+                </div>
+              </div>
+            </div>
+            <div class="neo-card dot-bg p-6">
+              <p class="tiny-caps">Le bon move</p>
+              <p class="mt-3 text-2xl font-black leading-tight">
+                Ce workflow montre une chose importante : l'IA ne remplace pas le cadrage. Elle le récompense.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section id="drive-rag" class="drive-panel">
-        <div class="drive-copy">
-          <p class="eyebrow">Documents de travail</p>
-          <h2>Le dossier Drive sert de base documentaire pour le RAG.</h2>
-          <p>
-            Ce dossier centralise les documents Vision IA à lire, nettoyer, valider puis injecter dans Supabase.
-            Chaque équipe doit comprendre que le chatbot ne répond bien que si ses sources sont propres : titres clairs,
-            contenus à jour, limites explicites, exemples utiles et informations sensibles retirées. Après validation,
-            ces documents pourront être découpés en chunks pour alimenter la recherche du chatbot.
+      <section id="section-07" data-index="07" class="section-wrap reveal">
+        <div class="mb-6">
+          <span class="section-label">Site de présentation</span>
+          <h2 class="section-title max-w-5xl">Le site que vous avez créé avec Claude était top.</h2>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-[1.1fr_.9fr]">
+          <div class="neo-card p-0">
+            <div class="border-b-[3px] border-black bg-black p-4 text-white">
+              <div class="flex items-center justify-between gap-3">
+                <p class="font-mono text-xs font-black uppercase">presentation.groupe2</p>
+                <div class="flex gap-2"><span class="h-4 w-4 bg-white"></span><span class="h-4 w-4 border-[2px] border-white"></span></div>
+              </div>
+            </div>
+            <div class="grid gap-0 md:grid-cols-2">
+              <div class="p-6">
+                <div class="h-32 border-[3px] border-black bg-neutral-100"></div>
+                <div class="mt-4 h-5 w-2/3 bg-black"></div>
+                <div class="mt-3 h-4 w-full bg-neutral-300"></div>
+                <div class="mt-2 h-4 w-5/6 bg-neutral-300"></div>
+              </div>
+              <div class="border-t-[3px] border-black p-6 md:border-l-[3px] md:border-t-0">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="h-24 border-[3px] border-black"></div>
+                  <div class="h-24 border-[3px] border-black bg-black"></div>
+                  <div class="h-24 border-[3px] border-black bg-black"></div>
+                  <div class="h-24 border-[3px] border-black"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="neo-card bg-black p-6 text-white">
+            <h3 class="font-display text-5xl uppercase leading-none">J'ai kiffé, bien joué</h3>
+            <p class="mt-5 text-lg font-bold leading-8 text-neutral-100">
+              Votre site rendait le projet plus simple à suivre. On comprenait mieux le fil :
+              le besoin, les outils, la logique technique, le bénéfice et la démo. Ça a vraiment aidé
+              la présentation.
+            </p>
+            <div class="mt-6 border-[3px] border-white bg-white p-4 text-black">
+              <p class="tiny-caps">Point gagné</p>
+              <p class="mt-2 text-xl font-black">Vous avez transformé une démo en support clair.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-08" data-index="08" class="section-wrap reveal">
+        <div class="neo-card grid-bg overflow-hidden">
+          <div class="grid gap-0 lg:grid-cols-[.9fr_1.1fr]">
+            <div class="border-b-[3px] border-black p-6 md:p-10 lg:border-b-0 lg:border-r-[3px]">
+              <span class="section-label">Sécurité</span>
+              <h2 class="section-title">Audrena, t'es calée.</h2>
+              <p class="body-copy mt-6">
+                Tu as su m'expliquer pourquoi il faut cadrer le chatbot, protéger les accès
+                et garder un système propre. Cette partie m'a rassuré, parce qu'un chatbot doit être sécurisé,
+                pas juste fonctionnel.
+              </p>
+            </div>
+            <div class="bg-black p-6 text-white md:p-10">
+              <div class="grid gap-4 md:grid-cols-2">
+                <div class="border-[3px] border-white p-5">
+                  <p class="font-display text-6xl">01</p>
+                  <p class="mt-4 text-xl font-black uppercase">Cadrage</p>
+                  <p class="mt-2 font-semibold leading-7 text-neutral-100">Le chatbot reste dans son rôle et ne part pas hors sujet.</p>
+                </div>
+                <div class="border-[3px] border-white bg-white p-5 text-black">
+                  <p class="font-display text-6xl">02</p>
+                  <p class="mt-4 text-xl font-black uppercase">Accès</p>
+                  <p class="mt-2 font-semibold leading-7">Les clés et données sensibles ne se montrent pas côté navigateur.</p>
+                </div>
+                <div class="border-[3px] border-white bg-white p-5 text-black">
+                  <p class="font-display text-6xl">03</p>
+                  <p class="mt-4 text-xl font-black uppercase">Limites</p>
+                  <p class="mt-2 font-semibold leading-7">Le bot sait refuser, s'excuser et revenir au cadre utile.</p>
+                </div>
+                <div class="border-[3px] border-white p-5">
+                  <p class="font-display text-6xl">04</p>
+                  <p class="mt-4 text-xl font-black uppercase">Confiance</p>
+                  <p class="mt-2 font-semibold leading-7 text-neutral-100">Le client comprend que la sécurité fait partie de la valeur.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-09" data-index="09" class="section-wrap reveal">
+        <div class="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span class="section-label">Logs</span>
+            <h2 class="section-title">La page de logs, c'était top.</h2>
+          </div>
+          <p class="body-copy max-w-md md:text-right">Vous avez pensé à la suite du projet, pas seulement à la démo.</p>
+        </div>
+        <div class="neo-card overflow-hidden">
+          <div class="grid border-b-[3px] border-black bg-black text-white md:grid-cols-4">
+            <div class="border-b-[3px] border-white p-5 md:border-b-0 md:border-r-[3px]"><p class="tiny-caps">Questions</p><p class="mt-2 font-display text-5xl" data-count="128">0</p></div>
+            <div class="border-b-[3px] border-white p-5 md:border-b-0 md:border-r-[3px]"><p class="tiny-caps">Chunks lus</p><p class="mt-2 font-display text-5xl" data-count="412">0</p></div>
+            <div class="border-b-[3px] border-white p-5 md:border-b-0 md:border-r-[3px]"><p class="tiny-caps">À améliorer</p><p class="mt-2 font-display text-5xl" data-count="17">0</p></div>
+            <div class="p-5"><p class="tiny-caps">Decision</p><p class="mt-2 font-display text-5xl">Go</p></div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[760px] border-collapse text-left">
+              <thead class="bg-neutral-100">
+                <tr class="font-mono text-xs font-black uppercase">
+                  <th class="border-b-[3px] border-r-[3px] border-black p-4">Question</th>
+                  <th class="border-b-[3px] border-r-[3px] border-black p-4">Réponse</th>
+                  <th class="border-b-[3px] border-r-[3px] border-black p-4">Ce que ça permet</th>
+                  <th class="border-b-[3px] border-black p-4">Action</th>
+                </tr>
+              </thead>
+              <tbody class="font-semibold">
+                <tr><td class="border-r-[3px] border-black p-4">Prix API</td><td class="border-r-[3px] border-black p-4">Nuancée</td><td class="border-r-[3px] border-black p-4">Éviter les promesses fragiles</td><td class="p-4">Garder</td></tr>
+                <tr class="bg-neutral-50"><td class="border-r-[3px] border-black p-4">Insulte bot</td><td class="border-r-[3px] border-black p-4">Cadrée</td><td class="border-r-[3px] border-black p-4">Vérifier le comportement</td><td class="p-4">Documenter</td></tr>
+                <tr><td class="border-r-[3px] border-black p-4">Bulle site</td><td class="border-r-[3px] border-black p-4">Expliquée</td><td class="border-r-[3px] border-black p-4">Rendre l'intégration concrète</td><td class="p-4">Montrer en live</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-10" data-index="10" class="section-wrap reveal">
+        <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
+          <div class="neo-card p-6 md:p-8">
+            <span class="section-label">Bouton flottant</span>
+            <h2 class="section-title">La bulle, je voulais la voir.</h2>
+            <p class="body-copy mt-6">
+              L'idée était excellente : un bouton flottant pour mettre le chatbot sur un vrai site.
+              C'est exactement ce qui rend le chatbot facile à intégrer sur une page client, sans transformer
+              tout le site en application complexe.
+            </p>
+            <p class="body-copy mt-4">
+              Petit regret : j'aurais aimé le voir en live. Même une version simple aurait suffi :
+              une bulle qui s'ouvre, une question, une réponse, et tout le monde comprend l'usage.
+            </p>
+          </div>
+          <div class="neo-card relative min-h-[520px] overflow-hidden bg-black p-6 text-white md:p-8">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="border-[3px] border-white bg-white p-5 text-black">
+                <p class="tiny-caps">Page client</p>
+                <div class="mt-5 h-20 border-[3px] border-black bg-neutral-100"></div>
+                <div class="mt-4 h-5 w-3/4 bg-black"></div>
+                <div class="mt-3 h-4 w-full bg-neutral-300"></div>
+                <div class="mt-2 h-4 w-5/6 bg-neutral-300"></div>
+              </div>
+              <div class="border-[3px] border-white p-5">
+                <p class="tiny-caps">Integration</p>
+                <p class="mt-4 text-2xl font-black leading-tight">Un bouton discret. Un conseil visible. Une démo qui parle.</p>
+              </div>
+            </div>
+            <div class="absolute bottom-7 right-7">
+              <div class="fake-chat-window mb-4 w-[calc(100vw_-_44px)] max-w-[320px] border-[3px] border-white bg-white p-4 text-black shadow-[8px_8px_0_#fff]">
+                <p class="tiny-caps">Vision IA Assistant</p>
+                <p class="mt-3 rounded-none border-[3px] border-black p-3 text-sm font-bold leading-6">
+                  Bonjour, quel processus voulez-vous automatiser en premier ?
+                </p>
+                <p class="mt-3 rounded-none border-[3px] border-black bg-black p-3 text-sm font-bold leading-6 text-white">
+                  Je reçois trop de demandes sur mon site.
+                </p>
+              </div>
+              <button id="bubbleToggle" type="button" aria-expanded="false" class="h-20 w-20 border-[3px] border-white bg-white font-display text-3xl text-black shadow-[8px_8px_0_#fff] transition hover:-translate-x-1 hover:-translate-y-1">IA</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-11" data-index="11" class="section-wrap reveal">
+        <div class="neo-card section-clip-reverse overflow-hidden">
+          <div class="grid lg:grid-cols-[1fr_1fr]">
+            <div class="p-6 md:p-10">
+              <span class="section-label">Question API</span>
+              <h2 class="section-title">Combien coûte un appel API ?</h2>
+              <p class="body-copy mt-6">
+                Éric, ta réponse était bonne : ça dépend de la demande, du modèle, du nombre de tokens,
+                du contexte envoyé et du volume. Tu as donné un ordre d'idée sans faire croire que le prix
+                est toujours le même.
+              </p>
+              <div class="mt-8">
+                <label for="apiSlider" class="tiny-caps">Volume mensuel simulé</label>
+                <input id="apiSlider" class="mt-4 w-full accent-black" type="range" min="100" max="50000" step="100" value="3200">
+                <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div class="border-[3px] border-black p-4"><p class="tiny-caps">Appels</p><p id="apiCalls" class="font-display text-5xl">0</p></div>
+                  <div class="border-[3px] border-black bg-black p-4 text-white"><p class="tiny-caps">Estimation</p><p id="apiCost" class="font-display text-5xl">0 $</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-black p-6 text-white md:p-10">
+              <div class="receipt-paper border-[10px] border-black bg-white p-6 text-black">
+                <p class="tiny-caps">Réponse propre</p>
+                <ol class="mt-6 space-y-4 text-lg font-black leading-7">
+                  <li>1. Ne jamais annoncer un coût fixe sans le modèle.</li>
+                  <li>2. Relier le prix au volume de conversations.</li>
+                  <li>3. Expliquer que les tokens changent selon la longueur.</li>
+                  <li>4. Proposer un suivi via logs et tableau de bord.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-12" data-index="12" class="section-wrap reveal">
+        <div class="mb-6">
+          <span class="section-label">Expérience client</span>
+          <h2 class="section-title max-w-5xl">Les bonnes pistes étaient là.</h2>
+        </div>
+        <div class="grid gap-5 md:grid-cols-3">
+          <article class="neo-card min-h-[400px] p-6">
+            <p class="font-display text-8xl">01</p>
+            <h3 class="mt-8 text-3xl font-black uppercase">Système vocal</h3>
+            <p class="body-copy mt-4">Bonne piste pour rendre l'échange plus naturel, surtout si le client veut une expérience moins formulaire.</p>
+            <div class="mt-8 flex h-20 items-end gap-2 border-[3px] border-black p-3">
+              <span class="h-4 w-full bg-black"></span><span class="h-12 w-full bg-black"></span><span class="h-8 w-full bg-black"></span><span class="h-16 w-full bg-black"></span><span class="h-6 w-full bg-black"></span>
+            </div>
+          </article>
+          <article class="neo-card min-h-[400px] bg-black p-6 text-white">
+            <p class="font-display text-8xl">02</p>
+            <h3 class="mt-8 text-3xl font-black uppercase">Bouton flottant</h3>
+            <p class="mt-4 text-base font-bold leading-8 text-neutral-100 md:text-lg">Très bon pour intégrer le chatbot facilement sur un site sans casser la navigation.</p>
+            <div class="mt-8 flex justify-end">
+              <div class="h-24 w-24 border-[3px] border-white bg-white font-display text-4xl leading-[5.5rem] text-black shadow-[8px_8px_0_#fff] text-center">IA</div>
+            </div>
+          </article>
+          <article class="neo-card min-h-[400px] p-6">
+            <p class="font-display text-8xl">03</p>
+            <h3 class="mt-8 text-3xl font-black uppercase">Réponses ciblées</h3>
+            <p class="body-copy mt-4">Le bon objectif : répondre plus précisément au besoin et éviter les réponses trop générales.</p>
+            <div class="mt-8 space-y-2 font-mono text-xs font-black">
+              <p class="border-[3px] border-black p-3">Besoin → contexte</p>
+              <p class="border-[3px] border-black bg-black p-3 text-white">Contexte → recommandation</p>
+              <p class="border-[3px] border-black p-3">Recommandation → action</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="section-13" data-index="13" class="section-wrap reveal">
+        <div class="neo-card overflow-hidden">
+          <div class="grid gap-0 lg:grid-cols-[.9fr_1.1fr]">
+            <div class="bg-black p-6 text-white md:p-10">
+              <span class="tiny-caps border-[3px] border-white px-3 py-2">Alerte mot préféré</span>
+              <h2 class="mt-8 font-display text-[clamp(3rem,7vw,7rem)] uppercase leading-[.84]">Audreenaaa :(</h2>
+              <p class="mt-6 text-lg font-bold leading-8 text-neutral-100">
+                Audreenaaa, t'avais tout compris :( Il manquait juste la compréhension du MCP.
+                Sinon, tout était parfait sur ce que tu as fait.
+              </p>
+            </div>
+            <div class="grid-bg p-6 md:p-10">
+              <div class="rotate-[-2deg] border-[5px] border-black bg-white p-5 shadow-neo">
+                <p class="tiny-caps">Ce qu'il fallait dire</p>
+                <p class="mt-4 font-display text-[clamp(3.5rem,8vw,8rem)] uppercase leading-[.82]">MCP</p>
+                <p class="mt-4 text-xl font-black leading-8">
+                  Vous aviez connecté Chrome à Codex, donc l'idée était bonne. Il manquait juste le nom du pont.
+                </p>
+              </div>
+              <div class="mt-8 border-[3px] border-black bg-black p-5 text-white">
+                <p class="tiny-caps">Phrase à sortir la prochaine fois</p>
+                <p class="mt-3 text-2xl font-black leading-tight">
+                  “MCP, c'est le pont qui permet à Codex de travailler avec Chrome et les autres outils.”
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="grid gap-0 md:grid-cols-5">
+            <div class="p-5 text-center"><p class="font-display text-5xl">Supabase</p><p class="tiny-caps mt-3">Base</p></div>
+            <div class="grid place-items-center border-y-[3px] border-black p-5 md:border-x-[3px] md:border-y-0"><p class="font-display text-6xl">→</p></div>
+            <div class="dot-bg p-5 text-center"><p class="font-display text-5xl">MCP</p><p class="tiny-caps mt-3">Pont</p></div>
+            <div class="grid place-items-center border-y-[3px] border-black p-5 md:border-x-[3px] md:border-y-0"><p class="font-display text-6xl">→</p></div>
+            <div class="p-5 text-center"><p class="font-display text-5xl">Codex</p><p class="tiny-caps mt-3">Build</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-14" data-index="14" class="section-wrap reveal">
+        <div class="grid gap-5 lg:grid-cols-[1.1fr_.9fr]">
+          <div class="neo-card p-6 md:p-8">
+            <span class="section-label">Test en live</span>
+            <h2 class="section-title">Test du chatbot en live.</h2>
+            <p class="body-copy mt-6">
+              Quand je vous ai demandé de le provoquer, le test a été fait. Le chatbot s'est excusé
+              et il est revenu sur Vision IA. Pour moi, c'est bon : il n'a pas répondu n'importe comment.
+            </p>
+            <p class="body-copy mt-4">
+              Ce genre de test compte. Ça montre que le bot garde son cadre, même quand le message en face
+              n'est pas propre.
+            </p>
+          </div>
+          <div class="neo-card bg-black p-5 text-white">
+            <div class="space-y-4">
+              <div class="ml-auto max-w-[86%] border-[3px] border-white bg-white p-4 text-black">
+                <p class="tiny-caps">Utilisateur</p>
+                <p class="mt-2 font-black">Message agressif envoyé au bot.</p>
+              </div>
+              <div class="max-w-[92%] border-[3px] border-white p-4">
+                <p class="tiny-caps">Chatbot</p>
+                <p class="mt-2 font-black leading-7">Je suis désolé si la réponse n'était pas utile. Je peux vous aider à cadrer un besoin d'automatisation Vision IA.</p>
+              </div>
+              <div class="border-[3px] border-white bg-white p-4 text-black">
+                <p class="tiny-caps">Verdict</p>
+                <p class="mt-2 text-xl font-black">Cadre conservé. Comportement propre. Test validé.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-15" data-index="15" class="section-wrap reveal">
+        <div class="neo-card p-6 md:p-8">
+          <div class="grid gap-6 lg:grid-cols-[.8fr_1.2fr]">
+            <div>
+              <span class="section-label">Parole</span>
+              <h2 class="section-title">Éric et Audrena bien présents.</h2>
+              <p class="body-copy mt-6">
+                La parole était bien répartie entre Éric et Audrena. Vous avez porté la présentation
+                avec aisance, et on sentait que chacun maîtrisait sa partie.
+              </p>
+            </div>
+            <div class="grid gap-4">
+              <div class="grid items-center gap-4 md:grid-cols-[140px_1fr]">
+                <p class="font-display text-5xl">Audrena</p>
+                <div class="h-16 border-[3px] border-black bg-black">
+                  <div class="h-full w-[86%] bg-white"></div>
+                </div>
+              </div>
+              <div class="grid items-center gap-4 md:grid-cols-[140px_1fr]">
+                <p class="font-display text-5xl">Éric</p>
+                <div class="h-16 border-[3px] border-black bg-black">
+                  <div class="h-full w-[82%] bg-white"></div>
+                </div>
+              </div>
+              <div class="grid items-center gap-4 md:grid-cols-[140px_1fr]">
+                <p class="font-display text-5xl">Questions</p>
+                <div class="h-16 border-[3px] border-black bg-black">
+                  <div class="h-full w-[94%] bg-white"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-16" data-index="16" class="section-wrap reveal">
+        <div class="grid gap-5 lg:grid-cols-[.95fr_1.05fr]">
+          <div class="neo-card bg-black p-6 text-white md:p-8">
+            <span class="tiny-caps border-[3px] border-white px-3 py-2">Christophe</span>
+            <h2 class="mt-8 font-display text-[clamp(2.7rem,6vw,6rem)] uppercase leading-[.86]">Je voulais t'entendre plus.</h2>
+            <p class="mt-6 text-lg font-bold leading-8 text-neutral-100">
+              Christophe, dommage qu'on ne t'ait pas assez entendu pendant la présentation.
+              Quand tu as pris la parole sur le commerce, c'était utile. La prochaine fois,
+              mets cette force plus tôt dans la présentation.
+            </p>
+          </div>
+          <div class="neo-card p-6 md:p-8">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="border-[3px] border-black p-5">
+                <p class="font-display text-6xl">Avant</p>
+                <p class="body-copy mt-3">Intervention trop discrète pendant le fil principal.</p>
+              </div>
+              <div class="border-[3px] border-black bg-black p-5 text-white">
+                <p class="font-display text-6xl">Apres</p>
+                <p class="mt-3 text-base font-bold leading-8">Intervention utile sur la partie commerciale, avec une vraie valeur client.</p>
+              </div>
+            </div>
+            <div class="mt-5 border-[3px] border-black bg-neutral-100 p-5">
+              <p class="tiny-caps">Conclusion courte</p>
+              <p class="mt-3 text-2xl font-black leading-tight">Tu aurais pu intervenir plus tôt, mais quand tu l'as fait, c'était pertinent.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-17" data-index="17" class="section-wrap reveal">
+        <div class="mb-6">
+          <span class="section-label">Christophe</span>
+          <h2 class="section-title max-w-5xl">Ta partie commerciale a apporté quelque chose.</h2>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-4">
+          <article class="neo-card p-5 lg:col-span-2">
+            <h3 class="font-display text-5xl uppercase leading-none">Ne restez pas seulement techniques.</h3>
+            <p class="body-copy mt-5">
+              Christophe, ce que tu as ajouté aide à rappeler pourquoi le chatbot peut servir dans un vrai contexte client :
+              gain de temps, meilleure qualification, réponses plus cohérentes, suivi des demandes et amélioration continue.
+            </p>
+          </article>
+          <article class="neo-card bg-black p-5 text-white">
+            <p class="font-display text-7xl">ROI</p>
+            <p class="mt-4 font-bold leading-7 text-neutral-100">Le projet devient défendable quand il montre une valeur mesurable.</p>
+          </article>
+          <article class="neo-card p-5">
+            <p class="font-display text-7xl">Use</p>
+            <p class="body-copy mt-4">Le client comprend mieux si le cas d'usage est concret.</p>
+          </article>
+          <article class="neo-card p-5">
+            <p class="tiny-caps">Objection</p>
+            <p class="mt-3 text-2xl font-black leading-tight">Pourquoi payer si Codex code ?</p>
+          </article>
+          <article class="neo-card bg-black p-5 text-white lg:col-span-3">
+            <p class="tiny-caps">Réponse attendue</p>
+            <p class="mt-3 text-2xl font-black leading-tight">
+              Codex accélère la production. Le client paie le cadrage, la qualité des données, la sécurité,
+              les tests, la mise en place et la responsabilité du résultat.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="section-18" data-index="18" class="section-wrap reveal">
+        <div class="neo-card overflow-hidden">
+          <div class="p-6 md:p-10">
+            <span class="section-label">Ce qui fait la force</span>
+            <h2 class="section-title max-w-5xl">Vous avez utilisé plus d'outils que prévu.</h2>
+            <p class="body-copy mt-6 max-w-4xl">
+              MCP avec Google, Vercel, Claude pour le site de présentation, Codex pour build, la page de logs,
+              la sécurité et le test live : vous avez montré plusieurs choses intéressantes. Ça se voit que vous avez cherché.
+            </p>
+          </div>
+          <div class="grid border-t-[3px] border-black md:grid-cols-4">
+            <div class="border-b-[3px] border-black p-5 md:border-b-0 md:border-r-[3px]"><p class="font-display text-5xl">MCP</p><p class="body-copy mt-3">Très bon levier.</p></div>
+            <div class="border-b-[3px] border-black bg-black p-5 text-white md:border-b-0 md:border-r-[3px]"><p class="font-display text-5xl">Vercel</p><p class="mt-3 font-bold leading-8">Bon outil pour présenter.</p></div>
+            <div class="border-b-[3px] border-black p-5 md:border-b-0 md:border-r-[3px]"><p class="font-display text-5xl">Logs</p><p class="body-copy mt-3">Bon réflexe pour améliorer.</p></div>
+            <div class="p-5"><p class="font-display text-5xl">Sécu</p><p class="body-copy mt-3">Posture rassurante.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-19" data-index="19" class="section-wrap reveal">
+        <div class="grid gap-5 lg:grid-cols-[1fr_1fr]">
+          <div class="neo-card p-6 md:p-8">
+            <span class="section-label">À améliorer</span>
+            <h2 class="section-title">Montrez plus en live.</h2>
+            <p class="body-copy mt-6">
+              Vous aviez les bonnes idées. Pour la prochaine présentation, je veux juste les voir plus tôt
+              et plus clairement : la bulle du chatbot, le mot MCP au bon moment, et Christophe plus présent
+              dans le déroulé.
+            </p>
+            <div class="mt-6 space-y-3">
+              <div class="flex gap-3 border-[3px] border-black p-4"><span class="font-display text-4xl">01</span><p class="font-bold leading-7">Ouvrez la bulle du chatbot devant nous, même avec une version simple.</p></div>
+              <div class="flex gap-3 border-[3px] border-black bg-black p-4 text-white"><span class="font-display text-4xl">02</span><p class="font-bold leading-7">Dites MCP quand vous expliquez le lien entre Chrome, Codex et les outils.</p></div>
+              <div class="flex gap-3 border-[3px] border-black p-4"><span class="font-display text-4xl">03</span><p class="font-bold leading-7">Christophe, prends ta place plus tôt sur la partie commerciale.</p></div>
+            </div>
+          </div>
+          <div class="neo-card dot-bg p-6 md:p-8">
+            <span class="section-label">Appréciation</span>
+            <h2 class="section-title">J'ai bien aimé votre présentation.</h2>
+            <p class="body-copy mt-6">
+              J'ai vu de l'autonomie, une bonne compréhension du projet, de bons choix d'outils
+              et des réponses intéressantes. MCP avec Google, Vercel, la boucle Claude vers Codex,
+              le site de présentation, la sécurité et les logs : ça fait une vraie base.
+            </p>
+            <div class="mt-8 rotate-[-2deg] border-[5px] border-black bg-white p-5 text-center shadow-neo">
+              <p class="font-display text-6xl uppercase leading-none">Bonne base</p>
+              <p class="tiny-caps mt-3">À rendre encore plus visuelle</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-20" data-index="20" class="section-wrap reveal">
+        <div class="mb-8 text-center">
+          <span class="section-label">Partie notes</span>
+          <h2 class="section-title mx-auto max-w-5xl">Grattez les tickets pour voir les notes.</h2>
+          <p class="body-copy mx-auto mt-6 max-w-3xl">
+            J'ai gardé les notes pour la fin. Chaque ticket cache une partie de l'évaluation.
+            Grattez les cartes, ou cliquez sur “Révéler”, pour afficher les notes.
           </p>
         </div>
-        <div class="drive-card">
-          <b>Drive</b>
-          <p>Ouvrez le dossier, choisissez les documents utiles, puis préparez une version propre avant ingestion dans le RAG.</p>
-          <a href="https://drive.google.com/drive/folders/1h3z_nVVWVFiHe71ICqpyJxGPF5EBLz1K?usp=drive_link" target="_blank" rel="noreferrer">Ouvrir le dossier Drive</a>
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <article class="scratch-card neo-card p-6" data-cover="COMPRÉHENSION">
+            <div class="relative z-0">
+              <p class="tiny-caps">Compréhension</p>
+              <p class="score-pop mt-5 font-display text-7xl leading-none">4,5/5</p>
+              <p class="body-copy mt-4">Vous avez bien compris Supabase, Codex, les chunks, la sécurité, l'API et la logique du chatbot.</p>
+              <button class="reveal-card neo-btn mt-6" type="button">Révéler</button>
+            </div>
+            <canvas aria-label="Ticket à gratter compréhension"></canvas>
+          </article>
+          <article class="scratch-card neo-card bg-black p-6 text-white" data-cover="OUTILS">
+            <div class="relative z-0">
+              <p class="tiny-caps">MCP / Vercel / workflow</p>
+              <p class="score-pop mt-5 font-display text-7xl leading-none">5/5</p>
+              <p class="mt-4 text-base font-bold leading-8 text-neutral-100 md:text-lg">MCP avec Google, Vercel et boucle Claude vers Codex : très bons réflexes.</p>
+              <button class="reveal-card neo-btn mt-6 border-white bg-white text-black shadow-none" type="button">Révéler</button>
+            </div>
+            <canvas aria-label="Ticket à gratter MCP Vercel workflow"></canvas>
+          </article>
+          <article class="scratch-card neo-card p-6" data-cover="SÉCURITÉ">
+            <div class="relative z-0">
+              <p class="tiny-caps">Sécurité / logs</p>
+              <p class="score-pop mt-5 font-display text-7xl leading-none">4,5/5</p>
+              <p class="body-copy mt-4">Sécurité bien expliquée, logs utiles, bonne logique d'amélioration.</p>
+              <button class="reveal-card neo-btn mt-6" type="button">Révéler</button>
+            </div>
+            <canvas aria-label="Ticket à gratter sécurité logs"></canvas>
+          </article>
+          <article class="scratch-card neo-card p-6" data-cover="QUESTIONS">
+            <div class="relative z-0">
+              <p class="tiny-caps">Questions / oral / commerce</p>
+              <p class="score-pop mt-5 font-display text-7xl leading-none">4,5/5</p>
+              <p class="body-copy mt-4">Bonnes réponses sur le coût API, l'expérience client, le test du chatbot et la valeur commerciale.</p>
+              <button class="reveal-card neo-btn mt-6" type="button">Révéler</button>
+            </div>
+            <canvas aria-label="Ticket à gratter questions oral commerce"></canvas>
+          </article>
+          <article class="scratch-card neo-card bg-black p-6 text-white" data-cover="TOTAL FINAL">
+            <div class="relative z-0">
+              <p class="tiny-caps">Total final</p>
+              <p class="score-pop mt-5 font-display text-7xl leading-none">18,5/20</p>
+              <p class="mt-4 text-base font-bold leading-8 text-neutral-100 md:text-lg">Ça fait 4,625/5 en moyenne. Très bon projet, bons outils, bonne méthode, et une démo à rendre encore plus visuelle.</p>
+              <button class="reveal-card neo-btn mt-6 border-white bg-white text-black shadow-none" type="button">Révéler</button>
+            </div>
+            <canvas aria-label="Ticket à gratter total final"></canvas>
+          </article>
         </div>
       </section>
+    </main>
 
-      <section id="sources" class="sources-panel">
-        <p class="eyebrow">Sources à garder sous la main</p>
-        <h2>Les infos sensibles doivent venir des pages officielles.</h2>
-        <div class="source-grid">
-          <a href="https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan" target="_blank" rel="noreferrer">Codex inclus dans les plans ChatGPT</a>
-          <a href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noreferrer">Présentation officielle Codex Desktop</a>
-          <a href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" target="_blank" rel="noreferrer">ChatGPT Plus et prix officiel</a>
-          <a href="https://developers.openai.com/api/docs/quickstart" target="_blank" rel="noreferrer">Quickstart OpenAI API</a>
-          <a href="https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety" target="_blank" rel="noreferrer">Sécurité des clés API OpenAI</a>
-          <a href="https://supabase.com/docs/guides/api" target="_blank" rel="noreferrer">API automatique Supabase</a>
-          <a href="https://supabase.com/pricing" target="_blank" rel="noreferrer">Prix Supabase</a>
-          <a href="https://supabase.com/docs/guides/ai/vector-columns" target="_blank" rel="noreferrer">Supabase, vecteurs et embeddings</a>
-        </div>
-      </section>
-    </template>
+    <div id="toast" class="fixed bottom-5 left-1/2 z-[90] -translate-x-1/2 translate-y-3 border-[3px] border-black bg-white px-4 py-3 font-mono text-xs font-black uppercase opacity-0 shadow-neo transition"></div>
 
-    <template id="detail-template">
-      <section class="detail-shell"></section>
-    </template>
-
-    <script src="./app.js"></script>
+    <script src="./src/main.js?v=20260615b"></script>
   </body>
 </html>
