@@ -212,11 +212,31 @@
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: ticketMarquee 11s linear infinite !important;
+  animation-iteration-count: infinite !important;
+  will-change: transform;
 }
 
 .ticker-track.reverse {
-  animation-name: marqueeReverse;
+  animation-name: ticketMarqueeReverse;
+}
+
+@keyframes ticketMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes ticketMarqueeReverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .tilt-card {
@@ -270,11 +290,6 @@
   height: 100%;
   cursor: crosshair;
   touch-action: none;
-}
-
-.scratch-card .reveal-card {
-  position: relative;
-  z-index: 20;
 }
 
 .scratch-card > div {

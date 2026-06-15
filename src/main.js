@@ -158,8 +158,6 @@ function initScratchCards() {
       state.drawing = false;
     });
 
-    $(".reveal-card", card)?.addEventListener("click", reveal);
-
     resize();
     window.addEventListener("resize", resize);
   });

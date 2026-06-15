@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./dist/styles.css?v=20260615d">
+    <link rel="stylesheet" href="./dist/styles.css?v=20260615e">
   </head>
   <body>
     <div class="cursor-halo" aria-hidden="true"></div>
@@ -90,7 +90,7 @@
                 <div class="col-span-2 border-[3px] border-white p-4">
                   <p class="tiny-caps">Ce que je retiens</p>
                   <p class="mt-3 text-xl font-black leading-tight">
-                    Bons outils, bonne méthode, bonne base. La prochaine fois, montrez encore plus de choses en live.
+                    Bons outils, bonne méthode, bonne base.
                   </p>
                 </div>
               </div>
@@ -200,6 +200,8 @@
       <section id="section-04" data-index="04" class="section-wrap reveal">
         <div class="mb-8 overflow-hidden border-y-[3px] border-black bg-white py-3">
           <div class="ticker-track gap-6 font-display text-4xl uppercase">
+            <span>MCP avec Google</span><span>Connecter</span><span>Chercher</span><span>Automatiser</span><span>Gagner du temps</span>
+            <span>MCP avec Google</span><span>Connecter</span><span>Chercher</span><span>Automatiser</span><span>Gagner du temps</span>
             <span>MCP avec Google</span><span>Connecter</span><span>Chercher</span><span>Automatiser</span><span>Gagner du temps</span>
             <span>MCP avec Google</span><span>Connecter</span><span>Chercher</span><span>Automatiser</span><span>Gagner du temps</span>
           </div>
@@ -794,16 +796,15 @@
           <h2 class="section-title mx-auto max-w-5xl">Grattez les tickets pour voir les notes.</h2>
           <p class="body-copy mx-auto mt-6 max-w-3xl">
             J'ai gardé les notes pour la fin. Chaque ticket cache une partie de l'évaluation.
-            Grattez les cartes, ou cliquez sur “Révéler”, pour afficher les notes.
+            Grattez les cartes avec la souris ou le doigt pour afficher les notes.
           </p>
         </div>
         <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           <article class="scratch-card neo-card p-6" data-cover="COMPRÉHENSION">
             <div class="relative z-0">
               <p class="tiny-caps">Compréhension</p>
-              <p class="score-pop mt-5 font-display text-7xl leading-none">4,5/5</p>
+              <p class="score-pop mt-5 font-display text-7xl leading-none">4/5</p>
               <p class="body-copy mt-4">Vous avez bien compris Supabase, Codex, les chunks, la sécurité, l'API et la logique du chatbot.</p>
-              <button class="reveal-card neo-btn mt-6" type="button">Révéler</button>
             </div>
             <canvas aria-label="Ticket à gratter compréhension"></canvas>
           </article>
@@ -812,7 +813,6 @@
               <p class="tiny-caps">MCP / Vercel / workflow</p>
               <p class="score-pop mt-5 font-display text-7xl leading-none">5/5</p>
               <p class="mt-4 text-base font-bold leading-8 text-neutral-100 md:text-lg">MCP avec Google, Vercel et boucle Claude vers Codex : très bons réflexes.</p>
-              <button class="reveal-card neo-btn mt-6 border-white bg-white text-black shadow-none" type="button">Révéler</button>
             </div>
             <canvas aria-label="Ticket à gratter MCP Vercel workflow"></canvas>
           </article>
@@ -821,7 +821,6 @@
               <p class="tiny-caps">Sécurité / logs</p>
               <p class="score-pop mt-5 font-display text-7xl leading-none">4,5/5</p>
               <p class="body-copy mt-4">Sécurité bien expliquée, logs utiles, bonne logique d'amélioration.</p>
-              <button class="reveal-card neo-btn mt-6" type="button">Révéler</button>
             </div>
             <canvas aria-label="Ticket à gratter sécurité logs"></canvas>
           </article>
@@ -830,16 +829,14 @@
               <p class="tiny-caps">Questions / oral / commerce</p>
               <p class="score-pop mt-5 font-display text-7xl leading-none">4,5/5</p>
               <p class="body-copy mt-4">Bonnes réponses sur le coût API, l'expérience client, le test du chatbot et la valeur commerciale.</p>
-              <button class="reveal-card neo-btn mt-6" type="button">Révéler</button>
             </div>
             <canvas aria-label="Ticket à gratter questions oral commerce"></canvas>
           </article>
           <article class="scratch-card neo-card bg-black p-6 text-white" data-cover="TOTAL FINAL">
             <div class="relative z-0">
               <p class="tiny-caps">Total final</p>
-              <p class="score-pop mt-5 font-display text-7xl leading-none">18,5/20</p>
-              <p class="mt-4 text-base font-bold leading-8 text-neutral-100 md:text-lg">Ça fait 4,625/5 en moyenne. Très bon projet, bons outils, bonne méthode, et une démo à rendre encore plus visuelle.</p>
-              <button class="reveal-card neo-btn mt-6 border-white bg-white text-black shadow-none" type="button">Révéler</button>
+              <p class="score-pop mt-5 font-display text-7xl leading-none">18/20</p>
+              <p class="mt-4 text-base font-bold leading-8 text-neutral-100 md:text-lg">Ça fait 4,5/5 en moyenne. Très bon projet, bons outils, bonne méthode, et une démo à rendre encore plus visuelle.</p>
             </div>
             <canvas aria-label="Ticket à gratter total final"></canvas>
           </article>
@@ -849,6 +846,6 @@
 
     <div id="toast" class="fixed bottom-5 left-1/2 z-[90] -translate-x-1/2 translate-y-3 border-[3px] border-black bg-white px-4 py-3 font-mono text-xs font-black uppercase opacity-0 shadow-neo transition"></div>
 
-    <script src="./src/main.js?v=20260615b"></script>
+    <script src="./src/main.js?v=20260615c"></script>
   </body>
 </html>
